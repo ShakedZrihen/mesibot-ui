@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
+import { slackAuth } from "../../../common/utils/auth.service";
 import { profileSelector } from "../../../state/selectors/profile";
-import { slackAuth } from "../../common/utils/auth.service";
+
 import "./Menu.scss";
 import MenuItems from "./MenusItems";
 
 const Menu = ({ className }) => {
   const profile = useSelector(profileSelector);
 
-  const isConnected = !!profile.name;
+  const isConnected = !!profile.email;
   return (
     <div className={`Menu ${className}`}>
       {isConnected && <MenuItems className="horizontal" />}
