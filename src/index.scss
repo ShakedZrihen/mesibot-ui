@@ -1,3 +1,5 @@
+@use '/src/styles/variables' as v;
+
 html, body {
   width: 100%;
   height:  100%;
@@ -16,15 +18,24 @@ body {
 
 #root {
   width: 100%;
-  height:  100%;
+  height: 100%;
 }
+
 /* Extra small devices (phones, 600px and down) */
 /* No Pane - 1 cube */
 
 @media only screen and (max-width: 600px) {
-  .text {
-    font-size: 20px;
-    color: orange;
+  aside.responsive {
+    width:  0;
+  }
+
+  .MenuItems.horizontal,
+  .Header .logo {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    display: block;
   }
 }
 
@@ -32,9 +43,17 @@ body {
 /* No Pane - 2 cubes */
 
 @media only screen and (min-width: 600px) {
-  .text {
-    font-size: 40px;
-    color: yellow;
+  aside.responsive {
+    width:  0;
+  }
+
+  .MenuItems.horizontal,
+  .Header .logo {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    display: block;
   }
 }
 
@@ -42,9 +61,18 @@ body {
 /* Full - 2 cubes */
 
 @media only screen and (min-width: 768px) {
-  .text {
-    font-size: 80px;
-    color: blue;
+  aside.responsive {
+    width:  v.$chat-width;
+  }
+
+  .MenuItems.horizontal,
+  .Header .logo {
+    display: flex  !important;
+  }
+
+  
+  .hamburger-icon {
+    display: none;
   }
 }
 
@@ -52,18 +80,10 @@ body {
 /* Full - 4 cubes */
 
 @media only screen and (min-width: 992px) {
-  .text {
-    font-size: 120px;
-    color: green;
-  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 /* Full - 4 cubes  */
 
 @media only screen and (min-width: 1200px) {
-  .text {
-    font-size: 160px;
-    color: var(--keren);
-  }
 }

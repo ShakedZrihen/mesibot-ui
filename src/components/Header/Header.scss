@@ -3,4 +3,33 @@
 .Header {
     background: linear-gradient(269.98deg, v.$linear-blue 5.78%, v.$linear-pink 68.74%, v.$linear-orange 102.49%);
     height: v.$header-height;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+
+    .logo {
+        width: 160px;
+        height: 24px;
+        background: no-repeat url('../../images/logo.png');
+    }
+
+    .hamburger-icon {
+        width: 22px;
+        height: 20px;
+        background: no-repeat url('../../images/hamburger.png');
+        margin-right: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .hamburger-menu {
+
+        }
+    }
+
+    nav {
+        margin-left: auto;
+        margin-right: 20px;
+    }
 }

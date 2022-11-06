@@ -10,7 +10,7 @@ const Playlist = ({ className }) => {
         <CurrSong />
         <SongsList />
       </main>
-      <aside>
+      <aside className="responsive">
         <Chat />
       </aside>
     </div>

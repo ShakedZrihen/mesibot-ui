@@ -1,0 +1,45 @@
+@use '../../../styles/variables' as v;
+
+.Menu {
+    display: flex;
+    font-size: 16px;
+    color: white;
+
+    .menu-items.horizontal {
+        display: flex;
+        align-items: center;
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin: 0 12px;
+    
+            &:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .menu-items.vertical {
+        display: flex;
+        flex-direction: row;
+
+        .menu-item {
+        }
+    }
+
+    .menu-button {
+        margin-left: 12px;
+        font-weight:700;
+        color: v.$text-color;
+        background: white;
+        border-radius: 80px;
+        padding: 14px 20px;
+        
+        &:hover {
+            cursor: pointer;
+            opacity: 0.5;
+        }
+    }
+}
