@@ -7,8 +7,12 @@ const Playlist = ({ className }) => {
   return (
     <div className={`Playlist ${className}`}>
       <main>
-        <CurrSong />
-        <SongsList />
+        <div className="CurrSongWrapper">
+          <CurrSong />
+        </div>
+        <div className="SongsListWrapper">
+          <SongsList />
+        </div>
       </main>
       <aside className="responsive">
         <Chat />
