@@ -1,8 +1,10 @@
 import "./App.css";
 import Routes from "./routes/Routes";
 import Header from "../src/components/Header";
+import useAuth from './components/Login/useAuth';
 
-function App() {
+const App = () => {
+  useAuth()
   return (
     <div className="App">
       <Header />
