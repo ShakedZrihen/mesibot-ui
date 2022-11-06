@@ -5,4 +5,66 @@
     height: v.$curr-song-height;
     background: v.$dark-gray;
     border-radius: 12px;
+
+    .CurrSongContent {
+        padding: 40px;
+
+        .CurrSongImageAndDetails {
+            display: flex;
+            padding-bottom: 25px;
+
+            .CurrSongImage {
+                width: 120px;
+                height: 120px;
+                background: black;
+            }
+
+            .CurrSongDetails {
+                padding-left: 20px;
+                text-align: left;
+
+                .CurrSongName {
+                    font-size: 24px;
+                    color: white;
+                }
+
+                .CurrSongArtist {
+                    padding-top: 15px;
+                    font-size: 16px;
+                    color: white;
+                }
+
+                .CurrSongRating {
+                    display: flex;
+                    align-items: center;
+                    padding-top: 15px;
+
+                    .CurrSongUser {
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background: black;
+                    }
+
+                    .CurrSongAddedBy {
+                        padding-left: 15px;
+                        font-size: 16px;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .progressBar {
+            width: 100%;
+            height: 4px;
+            background: v.$progress-bar-bg;
+            border-radius: 80px;
+    
+            .progressBarFill {
+                height: 100%;
+                background: v.$progress-bar-fill;
+            }
+        }
+    }
 }

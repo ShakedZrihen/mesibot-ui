@@ -11,7 +11,10 @@ const SongsList = ({ className }) => {
               <td>
                 <div className="songImage"></div>
               </td>
-              <td className="songDetails"></td>
+              <td className="songDetails">
+                <div className="songName">You and I</div>
+                <div className="songArtist">Lady Gaga</div>
+              </td>
               <td>
                 <div className="songUser"></div>
               </td>

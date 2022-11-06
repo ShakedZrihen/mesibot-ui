@@ -2,6 +2,19 @@
 
 .AddMessage {
     border-top: 1px solid v.$lightest-blue;
-    width:  100%;
-    height: v.$add-message-height;
+    padding: 15px;
+
+    input {
+        outline: none;
+        width: calc(100% - 40px);
+        height: v.$add-message-input-height;
+        border-radius: v.$add-message-input-height;
+        border: 1px solid v.$lightest-blue;
+        padding: 0 20px 0 20px;
+        font-family: 'Manrope',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+        font-size: 16px;
+        background: no-repeat url(../../../images/send.png);
+        background-position: calc(100% - 20px) 15px;
+    }
 }
