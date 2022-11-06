@@ -10,7 +10,7 @@ const ROUTES_MODEL = {
   PLAYLIST: {
     path: "/playlist/:playlistId",
     component: Playlist,
-    isAuth: true,
+    isAuth: true
   },
   STATS: { path: "/stats", component: Stats, isAuth: true },
   NOT_FOUND: { path: "*", component: NotFound, isAuth: true },

@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../../state/actions/profile";
-import { omitFromQs } from "../common/utils/utils";
-
-const SLACK_AUTH_QS = 'userSlackId'
-
+import { LOCAL_STORAGE_KEYS, omitFromQs } from "../common/utils/utils";
 
 const useAuth = () => {
     const dispatch = useDispatch();
     const [slackUserId, setSlackUserId] = useState(null);
-    const slackUserIdFromStorage = localStorage.getItem(SLACK_AUTH_QS);
+    const slackUserIdFromStorage = localStorage.getItem(LOCAL_STORAGE_KEYS.SLACK_AUTH_QS);
 
     const omitSlackUserIdFromQuery = () => {
-        const qsSlackUserId = omitFromQs(SLACK_AUTH_QS);
+        const qsSlackUserId = omitFromQs(LOCAL_STORAGE_KEYS.SLACK_AUTH_QS);
         if (qsSlackUserId) {
-            localStorage.setItem(SLACK_AUTH_QS, qsSlackUserId);
+            localStorage.setItem(LOCAL_STORAGE_KEYS.SLACK_AUTH_QS, qsSlackUserId);
             setSlackUserId(qsSlackUserId);
         }
     }
@@ -25,10 +22,8 @@ const useAuth = () => {
 
     useEffect(() => {
         if (slackUserIdFromStorage) {
-            console.log('try-auto-login', { slackUserIdFromStorage });
-            login()(dispatch);
+            login(slackUserIdFromStorage)(dispatch);
         } else {
-            console.log('logout');
             logout()(dispatch);
         }
     }, [slackUserIdFromStorage, dispatch])

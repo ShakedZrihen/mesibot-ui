@@ -1,6 +1,11 @@
 import QueryString from 'query-string';
 import _ from 'lodash';
 
+export const LOCAL_STORAGE_KEYS = {
+    SLACK_AUTH_QS: 'userSlackId',
+    LAST_PATHNAME: 'lastPathname'
+}
+
 export const omitFromQs = (
     qsParamName,
     search = QueryString.parse(window.location.search, {
