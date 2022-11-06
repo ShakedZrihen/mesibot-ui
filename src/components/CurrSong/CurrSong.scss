@@ -1,0 +1,8 @@
+@use '../../styles/variables' as v;
+
+.CurrSong {
+    width: 100%;
+    height: v.$curr-song-height;
+    background: v.$dark-gray;
+    border-radius: 12px;
+}

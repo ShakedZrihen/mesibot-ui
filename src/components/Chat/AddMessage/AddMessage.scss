@@ -1,0 +1,7 @@
+@use '../../../styles/variables' as v;
+
+.AddMessage {
+    border-top: 1px solid v.$lightest-blue;
+    width:  100%;
+    height: v.$add-message-height;
+}

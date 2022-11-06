@@ -1,0 +1,91 @@
+@use '/src/styles/variables' as v;
+
+html, body {
+  width: 100%;
+  height:  100%;
+  box-sizing: border-box;
+}
+
+body {
+  margin:  0;
+  background-color: white;
+  font-family: 'Manrope',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  font-weight: 400;
+  color: v.$text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Extra small devices (phones, 600px and down) */
+/* No Pane - 1 cube */
+
+@media only screen and (max-width: 600px) {
+  aside.responsive {
+    width:  0;
+  }
+
+  .MenuItems.horizontal,
+  .Header .logo {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* No Pane - 2 cubes */
+
+@media only screen and (min-width: 600px) {
+  aside.responsive {
+    width:  0;
+  }
+
+  .MenuItems.horizontal,
+  .Header .logo {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* Full - 2 cubes */
+
+@media only screen and (min-width: 768px) {
+  aside.responsive {
+    width:  v.$chat-width;
+  }
+
+  .MenuItems.horizontal,
+  .Header .logo {
+    display: flex  !important;
+  }
+
+  
+  .hamburger-icon {
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* Full - 4 cubes */
+
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Full - 4 cubes  */
+
+@media only screen and (min-width: 1200px) {
+}
