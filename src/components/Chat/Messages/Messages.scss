@@ -1,0 +1,9 @@
+@use '../../../styles/variables' as v;
+
+.Messages {
+    width:  100%;
+    height: calc(100% - v.$add-message-height);
+    background: repeat url('../../../images/chat-bg.png');
+    background-size: v.$chat-width;
+    overflow: auto;
+}

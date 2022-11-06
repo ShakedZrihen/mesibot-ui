@@ -1,13 +1,69 @@
+html, body {
+  width: 100%;
+  height:  100%;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  margin:  0;
+  background-color: white;
+  font-family: 'Manrope',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  width: 100%;
+  height:  100%;
+}
+/* Extra small devices (phones, 600px and down) */
+/* No Pane - 1 cube */
+
+@media only screen and (max-width: 600px) {
+  .text {
+    font-size: 20px;
+    color: orange;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* No Pane - 2 cubes */
+
+@media only screen and (min-width: 600px) {
+  .text {
+    font-size: 40px;
+    color: yellow;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* Full - 2 cubes */
+
+@media only screen and (min-width: 768px) {
+  .text {
+    font-size: 80px;
+    color: blue;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* Full - 4 cubes */
+
+@media only screen and (min-width: 992px) {
+  .text {
+    font-size: 120px;
+    color: green;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Full - 4 cubes  */
+
+@media only screen and (min-width: 1200px) {
+  .text {
+    font-size: 160px;
+    color: var(--keren);
+  }
 }
