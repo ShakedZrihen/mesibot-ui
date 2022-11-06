@@ -11,8 +11,7 @@
     }
 
     & > aside {
-        transition: width 0.2s height 0.2s;
-        width:  v.$chat-width;
+        transition: width 0.2s, height 0.2s;
         height: 100%;
         border-left: 1px solid v.$blue-20;
     }

@@ -1,0 +1,29 @@
+@use '../../../../styles/variables' as v;
+
+.MenuItems {
+    &.horizontal {
+        display: flex;
+        align-items: center;
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            margin: 0 12px;
+    
+            &:hover {
+                cursor: pointer;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &.vertical {
+        display: flex;
+        flex-direction: column;
+
+        .menu-item {
+            padding: 10px;
+            text-align: left;
+        }
+    }
+}
