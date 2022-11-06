@@ -5,31 +5,7 @@
     font-size: 16px;
     color: white;
 
-    .menu-items.horizontal {
-        display: flex;
-        align-items: center;
-
-        .menu-item {
-            display: flex;
-            align-items: center;
-            margin: 0 12px;
-    
-            &:hover {
-                cursor: pointer;
-                opacity: 0.5;
-            }
-        }
-    }
-
-    .menu-items.vertical {
-        display: flex;
-        flex-direction: row;
-
-        .menu-item {
-        }
-    }
-
-    .menu-button {
+    .menuButton {
         margin-left: 12px;
         font-weight:700;
         color: v.$text-color;
@@ -39,7 +15,31 @@
         
         &:hover {
             cursor: pointer;
-            opacity: 0.5;
+            opacity: v.$link-hover-opacity;
+        }
+    }
+
+    &.horizontal {
+        // display: flex;
+        // align-items: center;
+    }
+
+    &.vertical {
+        // position: absolute;
+        // left: 0;
+        // top: v.$header-height;
+        // width: 100%;
+        // background: linear-gradient(269.98deg, v.$linear-blue 5.78%, v.$linear-pink 68.74%, v.$linear-orange 102.49%);
+        // border-radius: 0 0 20px 0;
+        // padding-bottom: 10px;
+        // flex-direction: column;
+
+        &.open {
+            display: flex;
+        }
+
+        &.close {
+            display: none;
         }
     }
 }

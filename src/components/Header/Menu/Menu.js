@@ -10,7 +10,11 @@ const Menu = ({ className }) => {
     <div className={`Menu ${className}`}>
       <MenuItems className="horizontal" />
 
-      <div className="menu-button">Add Song</div>
+      {profile ? (
+        <div className="menuButton">Add Song</div>
+      ) : (
+        <div className="menuButton">Login</div>
+      )}
     </div>
   );
 };

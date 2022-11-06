@@ -8,11 +8,22 @@
     & > main{
         width: 100%;
         height: 100%;
+        overflow: scroll;
+ 
+        .CurrSongWrapper {
+            padding: v.$main-padding;
+        }
+       
+        .SongsListWrapper {
+            padding: 0 v.$main-padding;
+            height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding));
+            overflow: scroll;
+        }
     }
 
     & > aside {
         transition: width 0.2s, height 0.2s;
         height: 100%;
-        border-left: 1px solid v.$blue-20;
+        border-left: 1px solid v.$lightest-blue;
     }
 }
