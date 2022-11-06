@@ -1,6 +1,6 @@
+import Login from "../components/Login/Login";
 import PlaylistView from "../../src/components/Playlist";
 
-const Login = () => <div>login</div>;
 const NotFound = () => <div>not found</div>;
 const Playlist = () => <PlaylistView />;
 const Stats = () => <div>Stats</div>;
