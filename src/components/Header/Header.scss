@@ -1,0 +1,6 @@
+@use '../../styles/variables' as v;
+
+.Header {
+    background: linear-gradient(269.98deg, v.$linear-blue 5.78%, v.$linear-pink 68.74%, v.$linear-orange 102.49%);
+    height: v.$header-height;
+}
