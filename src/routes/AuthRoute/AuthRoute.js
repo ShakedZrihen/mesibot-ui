@@ -1,15 +1,18 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
+import { PROFILE_STATES } from "../../state/reducers/profile";
 import { profileSelector } from "../../state/selectors/profile";
-import history from "../history";
 import ROUTES_MODEL from "../routes.model";
 
 const AuthRoute = (props) => {
+  const history = useHistory();
   const profile = useSelector(profileSelector);
-  if (!profile) {
-    console.log("profile not exists. redirect to Login");
-    // history.replace(ROUTES_MODEL.LOGIN.path);
-  }
+  useEffect(() => {
+    if (profile === PROFILE_STATES.NOT_AUTH) {
+      history.replace(ROUTES_MODEL.LOGIN.path);
+    }
+  }, [profile, history])
   return <Route {...props} />;
 };
 
