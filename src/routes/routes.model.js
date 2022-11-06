@@ -1,5 +1,5 @@
+import Login from "../components/Login/Login";
 
-const Login = () => <div>login</div>;
 const NotFound = () => <div>not found</div>;
 const Playlist = () => <div>Playlist</div>;
 const Stats = () => <div>Stats</div>;
