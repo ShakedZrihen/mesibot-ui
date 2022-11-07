@@ -16,10 +16,8 @@ const Player = ({ playlist }) => {
     scope:
       'streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read'
   });
-  const currSongUri = _.get(currSong, 'uri');
-  console.log({ currSong, currSongUri });
 
-  const tracks = [currSongUri, ...playlist.map((song) => song.uri)];
+  const tracks = playlist.map((song) => song.uri);
   console.log('flom', { tracks });
   console.log('TOKEN: ', token);
   return Object.keys(token).length === 0 ? (
