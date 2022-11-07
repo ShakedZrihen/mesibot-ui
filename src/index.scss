@@ -4,6 +4,7 @@ html, body {
   width: 100%;
   height:  100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 body {
@@ -24,11 +25,34 @@ body {
 }
 
 /* Extra small devices (phones, 600px and down) */
-/* No Pane - 1 cube */
 
 @media only screen and (max-width: 600px) {
   aside.responsive {
-    width:  0;
+    position: absolute;
+    bottom: 0;
+    background: white;
+    width: 100%;
+
+    .toggleMessages {
+      display: block;
+    }
+
+    &.open {
+      border-top: 1px solid v.$lightest-blue;
+      height: 50%;
+      
+      .toggleMessages {
+        transform: rotate(0deg);
+      }
+    }
+
+    &.close {
+      height: v.$add-message-height;
+    }
+  }
+
+  .SongsListWrapper {
+    height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding + v.$add-message-height));
   }
 
   .MenuItems.horizontal,
@@ -42,11 +66,34 @@ body {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-/* No Pane - 2 cubes */
 
 @media only screen and (min-width: 600px) {
   aside.responsive {
-    width:  0;
+      position: absolute;
+      bottom: 0;
+      background: white;
+      width: 100%;
+
+      .toggleMessages {
+        display: block;
+      }
+      
+      &.open {
+        border-top: 1px solid v.$lightest-blue;
+        height: 50%;
+
+        .toggleMessages {
+          transform: rotate(0deg);
+        }
+      }
+
+      &.close {
+        height: v.$add-message-height;
+      }
+  }
+
+  .SongsListWrapper {
+    height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding + v.$add-message-height));
   }
 
   .MenuItems.horizontal,
@@ -60,11 +107,27 @@ body {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-/* Full - 2 cubes */
 
 @media only screen and (min-width: 768px) {
   aside.responsive {
     width:  v.$chat-width;
+    height: 100% !important;
+    position: unset;
+    bottom: unset;
+    background: unset;
+
+    .toggleMessages {
+      display: none;
+      transform: rotate(180deg);
+    }
+  }
+
+  .SongsListWrapper {
+    height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding));
+  }
+
+  .Messages {
+    display: block;
   }
 
   .MenuItems.horizontal,
@@ -79,13 +142,11 @@ body {
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-/* Full - 4 cubes */
 
 @media only screen and (min-width: 992px) {
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-/* Full - 4 cubes  */
 
 @media only screen and (min-width: 1200px) {
 }

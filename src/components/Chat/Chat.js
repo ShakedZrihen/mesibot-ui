@@ -2,11 +2,11 @@ import "./Chat.scss";
 import Messages from "./Messages";
 import AddMessage from "./AddMessage";
 
-const Chat = ({ className }) => {
+const Chat = ({ className, setIsChatOpen, isChatOpen }) => {
   return (
     <div className={`Chat ${className}`}>
       <Messages />
-      <AddMessage />
+      <AddMessage setIsChatOpen={setIsChatOpen} isChatOpen={isChatOpen} />
     </div>
   );
 };

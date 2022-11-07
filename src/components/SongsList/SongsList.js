@@ -1,6 +1,13 @@
 import "./SongsList.scss";
+import axios from "axios";
+
+export const getPlaylist = async () =>
+  axios.get("https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM");
 
 const SongsList = ({ className }) => {
+  // const playlist = await getPlaylist();
+  // console.log('+++', playlist);
+
   return (
     <div className={`SongsList ${className}`}>
       <table>
