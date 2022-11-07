@@ -6,7 +6,7 @@ const CurrSong = ({ className, currSong, playlist }) => {
     <div className={`CurrSong ${className}`}>
 
       <div className="CurrSongContent">
-        <Player playlistData={playlistData}></Player>
+        <Player currSong={currSong} playlist={playlist}></Player>
       </div>
     </div>
   );
