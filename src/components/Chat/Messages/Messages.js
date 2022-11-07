@@ -11,7 +11,7 @@ const ColorPicker = () => {
     "blue",
     "orange",
     "turquoise",
-    "light-purple",
+    "purple",
     "red",
     "light-pink",
     "light-yellow",
@@ -20,7 +20,20 @@ const ColorPicker = () => {
     "peach",
     "lilach",
     "light-purple",
+    "grad-blue-1",
+    "grad-blue-2",
+    "grad-blue-3",
+    "grad-pink-1",
+    "grad-pink-2",
+    "grad-pink-3",
+    "grad-orange-1",
+    "grad-orange-2",
+    "grad-orange-3",
+    "grad-purple-1",
+    "grad-purple-2",
+    "grad-purple-3",
   ];
+
   const authorsColors = {};
   return {
     getColorByAuthor: (author) => {
