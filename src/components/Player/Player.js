@@ -9,16 +9,7 @@ const getTokenFromStorage = () => {
 };
 
 const Player = ({ playlistData }) => {
-  const [token, setToken] = useState({
-    access_token:
-      'BQDEM8-2gcBKwEDIz2DUJ4GtUBYsMFmhYAzT8iYYXqfyOgZoqMMsSP7-f_ChUW8vYHVQ63VRr3IfnXWE3KR0lhSok3I6LVwgSmcMsIny8DscehkV9BXxA-cTXw2goQEh76k5wb8Kz42j-_iijp8hy_Byc3rY29UcbEXa5a-D3SKssFjEtGEuCycPXdD3cQK61ONJdszwhi11AUJOAvzWybm5-bvjKuDtxI5V',
-    token_type: 'Bearer',
-    expires_in: 3600,
-    refresh_token:
-      'AQAD-4Ojtv3cv_UdhKENScwLVNhD6XNR3AI4AuNGzPur7oGZOAcuoF4hsjj8vcoJu6k4BqYrxC-kjacgujtYJ2BAgtxy-LAzob2pVi12fUaQID4AUo9NQ0QmHtLMYeFDrH8',
-    scope:
-      'streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read'
-  });
+  const [token, setToken] = useState({"access_token":"BQCAmU41pe88Gv6cJ4lf8UbFcL1jaiyyWb1dugJCYIo7VCYu1UH0Xi6PB-SAZQSyTT1ablIlX7I47r3dDhRg7i_l70VUp8pHIHTbO3gzAQvYqn28fEqRL6hZ3Ev0Iq73vA_Lhn34fQ0sXU0xy5xcTOzPEfq-tjck6Sg6-5OC99LvpFBrkMaLEBzp-euZhb67FeUHLwNBsfHS4Chyrf02dQhEvL_lhqKFs3Rp","token_type":"Bearer","expires_in":3600,"refresh_token":"AQCy-pVRL6y_ArqrozPQyF-cI_eaFOvsIyUJ4_OfEA5-dnte4bePu0q1kNRUbg-lokzv7QvKGGIf0BTh88FjnzdvzUjtS56vhvGy0-w87uUMSJzEhmc8isntogY4Y5hFKRw","scope":"streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read"});
 
   useEffect(() => {
     setTimeout(() => {
