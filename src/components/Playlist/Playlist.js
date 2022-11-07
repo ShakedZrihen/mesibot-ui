@@ -11,24 +11,24 @@ import { fetchPlaylist } from '../../state/actions/playlist';
 const Playlist = ({ className }) => {
   const dispatch = useDispatch();
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [currSong, setCurrSong] = useState();
+  // const [currSong, setCurrSong] = useState();
   const playlist = useSelector(playlistSelector);
 
-  const firstSong = _.get(playlist, '[0]');
+  // const firstSong = _.get(playlist, '[0]');
 
   useEffect(() => {
     fetchPlaylist()(dispatch)
   }, [dispatch]);
 
-  useEffect(() => {
-    setCurrSong(firstSong);
-  }, [firstSong])
+  // useEffect(() => {
+  //   setCurrSong(firstSong);
+  // }, [firstSong])
 
   return (
     <div className={`Playlist ${className}`}>
       <main>
         <div className='CurrSongWrapper'>
-          <CurrSong currSong={currSong} playlist={playlist.slice(1)} />
+          <CurrSong playlist={playlist} />
         </div>
         <div className='SongsListWrapper'>
           <SongsList playlistData={playlist} />

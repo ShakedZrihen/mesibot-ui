@@ -8,5 +8,4 @@ export const sendNewMessage = async (content) => {
     const { data } = await serviceClient.post(`${CHAT_SERVICE_URI}/newMessage`, {
         message: content
     });
-    console.log('after-send-message', { data });
 }

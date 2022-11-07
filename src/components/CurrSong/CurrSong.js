@@ -1,12 +1,13 @@
+import { useEffect } from "react";
 import Player from "../Player/Player";
 import "./CurrSong.scss";
 
-const CurrSong = ({ className, currSong, playlist }) => {
+const CurrSong = ({ className, playlist }) => {
   return (
     <div className={`CurrSong ${className}`}>
 
       <div className="CurrSongContent">
-        <Player currSong={currSong} playlist={playlist}></Player>
+        <Player playlist={playlist}></Player>
       </div>
     </div>
   );
