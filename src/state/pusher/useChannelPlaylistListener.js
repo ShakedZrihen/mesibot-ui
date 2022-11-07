@@ -10,7 +10,6 @@ const useChannelPlaylistListener = ({ pusher, playlistId }) => {
 
         /* chat events */
         playlistChannel.bind(chatEvents.NEW_MESSAGE, message => {
-            console.log('event-test-trigger', { message });
             recieveNewMessage(message)(dispatch);
         });
     }
