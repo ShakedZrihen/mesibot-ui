@@ -2,55 +2,6 @@ import "./SongsList.scss";
 
 
 const SongsList = ({ className, playlistData }) => {
-  // const playlist1 = {
-  //   data: [
-  //     {
-  //       name: "Rain On Me (with Ariana Grande)",
-  //       artist: "Lady Gaga",
-  //       uri: "spotify:track:7ju97lgwC2rKQ6wwsf9no9",
-  //       image:
-  //         "https://i.scdn.co/image/ab67616d0000b2736040effba89b9b00a6f6743a",
-  //       priority: 1,
-  //     },
-  //     {
-  //       name: "Lady Madonna",
-  //       artist: "The Beatles",
-  //       uri: "spotify:track:5l1eg7A2S6PtlIbo3Ms4dl",
-  //       image:
-  //         "https://i.scdn.co/image/ab67616d0000b27330503dbc30e621c96913379b",
-  //       priority: 0,
-  //     },
-  //   ],
-  //   status: 200,
-  //   statusText: "",
-  //   headers: {
-  //     "cache-control": "no-cache",
-  //     "content-length": "378",
-  //     "content-type": "application/json; charset=utf-8",
-  //   },
-  //   config: {
-  //     transitional: {
-  //       silentJSONParsing: true,
-  //       forcedJSONParsing: true,
-  //       clarifyTimeoutError: false,
-  //     },
-  //     transformRequest: [null],
-  //     transformResponse: [null],
-  //     timeout: 0,
-  //     xsrfCookieName: "XSRF-TOKEN",
-  //     xsrfHeaderName: "X-XSRF-TOKEN",
-  //     maxContentLength: -1,
-  //     maxBodyLength: -1,
-  //     env: {},
-  //     headers: {
-  //       Accept: "application/json, text/plain, */*",
-  //     },
-  //     method: "get",
-  //     url: "https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM",
-  //   },
-  //   request: {},
-  // };
-
   return (
     <div className={`SongsList ${className}`}>
       <table>
@@ -80,7 +31,7 @@ const SongsList = ({ className, playlistData }) => {
               }
             )}
         </tbody>
-        <tbody>
+        {/* <tbody>
           {[...Array(10)].map((e, i) => {
             return (
               <tr key={i}>
@@ -99,7 +50,7 @@ const SongsList = ({ className, playlistData }) => {
               </tr>
             );
           })}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );

@@ -14,7 +14,7 @@ const Login = () => {
     const lastPathname = localStorage.getItem(LOCAL_STORAGE_KEYS.LAST_PATHNAME);
 
     useEffect(() => {
-        if (profileEmail) {
+        if (profileEmail && lastPathname) {
             history.push(lastPathname);
         }
     }, [profileEmail, history, lastPathname]);

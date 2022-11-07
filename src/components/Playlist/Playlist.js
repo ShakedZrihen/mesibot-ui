@@ -1,34 +1,39 @@
 import './Playlist.scss';
+import _ from 'lodash';
 import CurrSong from '../CurrSong';
 import SongsList from '../SongsList';
 import Chat from '../Chat';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { playlistSelector } from '../../state/selectors/playlist';
+import { fetchPlaylist } from '../../state/actions/playlist';
 
-const getPlaylist = async () => axios.get('https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM');
+// const getPlaylist = async () => axios.get('https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM');
 
 const Playlist = ({ className }) => {
+  const dispatch = useDispatch();
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [playlist, setPlaylist] = useState({});
-  const getPlaylistBlah = async () => {
-    const playlist = await getPlaylist();
-    setPlaylist(playlist);
-  };
+  const [currSong, setCurrSong] = useState();
+  const playlist = useSelector(playlistSelector);
+
+  const firstSong = _.get(playlist, '[0]');
 
   useEffect(() => {
-    getPlaylistBlah();
-  }, []);
+    fetchPlaylist()(dispatch)
+  }, [dispatch]);
 
-  const playlistData = playlist.data;
+  useEffect(() => {
+    setCurrSong(firstSong);
+  }, [firstSong])
 
   return (
     <div className={`Playlist ${className}`}>
       <main>
         <div className='CurrSongWrapper'>
-          <CurrSong playlistData={playlistData} />
+          <CurrSong currSong={currSong} playlist={playlist.slice(1)} />
         </div>
         <div className='SongsListWrapper'>
-          <SongsList playlistData={playlistData}/>
+          <SongsList playlistData={playlist} />
         </div>
       </main>
       <aside className={`responsive ${isChatOpen ? 'open' : 'close'}`}>
