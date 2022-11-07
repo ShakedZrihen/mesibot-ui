@@ -64,6 +64,9 @@ const Player = ({ playlist }) => {
             console.log('song-started', { type, state });
             currSongStarted()(dispatch);
           }
+          if(state.error) {
+            setToken({});
+          }
         }}
       />
     </div>
