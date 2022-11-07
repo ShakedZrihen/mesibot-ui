@@ -2,8 +2,11 @@ import "./Playlist.scss";
 import CurrSong from "../CurrSong";
 import SongsList from "../SongsList";
 import Chat from "../Chat";
+import { useState } from "react";
 
 const Playlist = ({ className }) => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   return (
     <div className={`Playlist ${className}`}>
       <main>
@@ -14,8 +17,8 @@ const Playlist = ({ className }) => {
           <SongsList />
         </div>
       </main>
-      <aside className="responsive">
-        <Chat />
+      <aside className={`responsive ${isChatOpen ? "open" : "close"}`}>
+        <Chat setIsChatOpen={setIsChatOpen} isChatOpen={isChatOpen} />
       </aside>
     </div>
   );

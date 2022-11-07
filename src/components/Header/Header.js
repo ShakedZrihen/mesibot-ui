@@ -18,6 +18,8 @@ const Header = ({ className }) => {
         <MenuItems className={`vertical ${isMenuOpen ? "open" : "close"}`} />
       </div>
       <div className="logo"></div>
+      <div className="playlistIcon"></div>
+      <div className="playlistName">Shvizut yom Alef</div>
       <nav>
         <Menu />
       </nav>
