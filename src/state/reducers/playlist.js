@@ -22,7 +22,8 @@ const playlistReducer = (state = [], action) => {
         //     return orderPlaylist([firstSong, ...playlist]);
 
         case NEW_SONG:
-            return orderPlaylist([...state, action.payload]);
+            const firstSong = _.get(state, '[0]');
+            return [firstSong, ...orderPlaylist([...state.slice(1), action.payload])];
 
         case CURR_SONG_STARTED:
             const playlistWithoutFirst = orderPlaylist(state).slice(1);
