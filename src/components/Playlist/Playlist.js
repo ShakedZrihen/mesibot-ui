@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { playlistSelector } from '../../state/selectors/playlist';
 import { fetchPlaylist } from '../../state/actions/playlist';
 
-// const getPlaylist = async () => axios.get('https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM');
-
 const Playlist = ({ className }) => {
   const dispatch = useDispatch();
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -36,7 +34,7 @@ const Playlist = ({ className }) => {
           <SongsList playlistData={playlist} />
         </div>
       </main>
-      <aside className={`responsive ${isChatOpen ? 'open' : 'close'}`}>
+      <aside className={`responsive ${isChatOpen ? "open" : "close"}`}>
         <Chat setIsChatOpen={setIsChatOpen} isChatOpen={isChatOpen} />
       </aside>
     </div>

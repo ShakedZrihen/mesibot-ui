@@ -13,18 +13,19 @@ const Player = ({ currSong, playlist }) => {
     <div>
       <SpotifyPlayer
         styles={{
-          activeColor: '#fff',
-          bgColor: '#222326',
-          color: '#fff',
-          loaderColor: '#fff',
-          sliderColor: '#1cb954',
-          trackArtistColor: '#ccc',
-          trackNameColor: '#fff'
+          activeColor: "white",
+          bgColor: "unset",
+          color: "white",
+          loaderColor: "#fff",
+          sliderColor: "#17E1BD",
+          sliderTrackColor: "#61656C",
+          sliderHandleColor: "#61656C",
+          trackArtistColor: "white",
+          trackNameColor: "white",
         }}
         token={token.access_token}
         uris={tracks}
       />
-      ;
     </div>
   );
 };

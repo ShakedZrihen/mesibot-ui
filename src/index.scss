@@ -150,3 +150,61 @@ body {
 
 @media only screen and (min-width: 1200px) {
 }
+
+@media (min-width: 1024px) {
+    ._InfoRSWP {
+      img {
+          display: block;
+      }
+
+      > div {
+        padding-left: 20px;
+  
+        p {
+            font-size: 18px;
+        }
+  
+        p:first-child {
+            font-size: 24px;
+            padding-bottom: 16px;
+        }
+
+        p:nth-child(2) {
+          span:not(:first-child) {
+            display: none;
+          }
+        }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  ._InfoRSWP {
+    img {
+        display: none;
+    }
+
+    > div {
+      padding-left: 20px;
+
+      p {
+          font-size: 12px;
+      }
+
+      p:first-child {
+          font-size: 18px;
+          padding-bottom: 10px;
+      }
+
+      p:nth-child(2) {
+        span:not(:first-child) {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  ._ActionsRSWP {
+    position: relative;
+  }
+}
