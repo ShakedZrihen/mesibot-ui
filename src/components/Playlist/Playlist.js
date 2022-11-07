@@ -20,7 +20,7 @@ const Playlist = ({ className }) => {
   }, []);
 
   const playlistData = playlist.data;
-
+  
   return (
     <div className={`Playlist ${className}`}>
       <main>

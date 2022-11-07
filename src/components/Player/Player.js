@@ -9,7 +9,16 @@ const getTokenFromStorage = () => {
 };
 
 const Player = ({ playlistData }) => {
-  const [token, setToken] = useState({"access_token":"BQCAmU41pe88Gv6cJ4lf8UbFcL1jaiyyWb1dugJCYIo7VCYu1UH0Xi6PB-SAZQSyTT1ablIlX7I47r3dDhRg7i_l70VUp8pHIHTbO3gzAQvYqn28fEqRL6hZ3Ev0Iq73vA_Lhn34fQ0sXU0xy5xcTOzPEfq-tjck6Sg6-5OC99LvpFBrkMaLEBzp-euZhb67FeUHLwNBsfHS4Chyrf02dQhEvL_lhqKFs3Rp","token_type":"Bearer","expires_in":3600,"refresh_token":"AQCy-pVRL6y_ArqrozPQyF-cI_eaFOvsIyUJ4_OfEA5-dnte4bePu0q1kNRUbg-lokzv7QvKGGIf0BTh88FjnzdvzUjtS56vhvGy0-w87uUMSJzEhmc8isntogY4Y5hFKRw","scope":"streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read"});
+  const [token, setToken] = useState({
+    access_token:
+      'BQC6qRJPIOHa3yvmIFj9SDZ4ZT5PDM8bLFeBNLdbKGGPAmoQLxPKdzV3QAAFj9Sawj0n_MyFT3FDfrPPIQIZMTAAfqyTnPiSmWRrtYSsmVm3mLU1ev0B2-WfgU0syBueJTg4po-KMCz_lmbG-j3u8WYjTqlAP4T4TGc7CCu5PJ1pgJLRE5RRnAqZAhiboTObDduUfOtHhG9p',
+    token_type: 'Bearer',
+    expires_in: 3600,
+    refresh_token:
+      'AQC4RKmm7Fi4EROFPabHOQTpjQZ3q_mVzUoo7PJk6NgrO8CEVIRYpPCUtTOL9SLn9bAn6DHWOtIp__TNFEXTV9TQmcj3O5Yp74jkIdIlguA7FLt79jxTIGijESIrB-950j4',
+    scope:
+      'streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read'
+  });
 
   useEffect(() => {
     setTimeout(() => {
