@@ -7,14 +7,11 @@ import { currSongStarted } from '../../state/actions/playlist';
 const Player = ({ playlist }) => {
   const dispatch = useDispatch();
   const [token, setToken] = useState({
-    access_token:
-      'BQAm8rYdaIFKriS2enJNQuuuBk6rBshMV7jvis_hF2g9AliLSiU4qDy037Y4ZgbQaunVViMg1djdTkcPDG0yQL84yyg_JO4YdxugpurAUUqD3cd3ssXG2bHQO_4kakcAgDK-CnfYUSyJUoMPsBZIF0QYIhsmLx2LxWbIcHo0UTsib3Xgou9-oYaxUj6EfLUnq7e7vxJ2t1S6tAlsg_ZlXK0VvK2c_WhZ5SGT',
-    token_type: 'Bearer',
-    expires_in: 3600,
-    refresh_token:
-      'AQAylbevgXwQSI_azSdsKHcVobIxbQmWEKEsp6paGixoKTF1z6P5UFZS-Hc5nvxZWjQgF3NX31b17ONByViSIdtGSODgSegE3FKSFZLYSpmSJQXEuieQostm7makfEkry1k',
-    scope:
-      'streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read'
+    "access_token": "BQAm8rYdaIFKriS2enJNQuuuBk6rBshMV7jvis_hF2g9AliLSiU4qDy037Y4ZgbQaunVViMg1djdTkcPDG0yQL84yyg_JO4YdxugpurAUUqD3cd3ssXG2bHQO_4kakcAgDK-CnfYUSyJUoMPsBZIF0QYIhsmLx2LxWbIcHo0UTsib3Xgou9-oYaxUj6EfLUnq7e7vxJ2t1S6tAlsg_ZlXK0VvK2c_WhZ5SGT",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "refresh_token": "AQAylbevgXwQSI_azSdsKHcVobIxbQmWEKEsp6paGixoKTF1z6P5UFZS-Hc5nvxZWjQgF3NX31b17ONByViSIdtGSODgSegE3FKSFZLYSpmSJQXEuieQostm7makfEkry1k",
+    "scope": "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read"
   });
 
   const tracks = playlist.map((song) => song.uri);
@@ -64,7 +61,7 @@ const Player = ({ playlist }) => {
             console.log('song-started', { type, state });
             currSongStarted()(dispatch);
           }
-          if(state.error) {
+          if (state.error) {
             setToken({});
           }
         }}
