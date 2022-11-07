@@ -3,23 +3,54 @@ import _ from 'lodash';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import { useDispatch } from 'react-redux';
 import { currSongStarted } from '../../state/actions/playlist';
+import { useLocation } from 'react-router';
+import { LOCAL_STORAGE_KEYS } from '../../common/utils/utils';
+import { SERVICE_URL } from '../../common/utils/api.consts';
+import axios from 'axios';
 
 const Player = ({ playlist }) => {
   const dispatch = useDispatch();
-  const [token, setToken] = useState({
-    access_token:
-      'BQAquSBUuPjQAFe5nAQ8H7uvGcm-B_HksBJ0f3GvbPW4QD-iMy8Hiqhxoga3e7a_faqFhnrjW-gmg4rU6oQZ22Uhhb1tio_tmPfjXBW1rvaUgKAvdVCPL2Tv6rZZ1B3623S3X6BhN3t5AK7ZvqgH4DMn2bBKWM2C5a2D6MNni7QUobpVXYtQFcg5nPPhMJgROiu7humTbHBp2tyNSQiOs0W3TbHNH0AxjQj-',
-    token_type: 'Bearer',
-    expires_in: 3600,
-    refresh_token:
-      'AQD5rFsF39EcmLRPIZQJqVnnyM_Oe2biCPSqAhI2mMVZNTT25aWXqJRD3s8tJa9qzK5ceXj3Gu-7EloeZnOHMCG-ZuKZ6XzWITTe-klpFR7Y2-TWWqt5MUBDNpaUhsh7tEU',
-    scope:
-      'streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read'
-  });
+  const location = useLocation();
+  const [token, setToken] = useState({});
+
+  useEffect(() => {
+    const getToken = async (code) => {
+      const { data: token } = await axios.get(
+        `${SERVICE_URL}/spotify/redirect?code=${code}`
+      );
+      setToken(token);
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.CODE);
+    };
+    if (!token.access_token) {
+      const pathname = _.get(location, 'pathname');
+      localStorage.setItem(LOCAL_STORAGE_KEYS.LAST_PATHNAME, pathname);
+      const code = localStorage.getItem(LOCAL_STORAGE_KEYS.CODE);
+      if (code) {
+        getToken(code);
+        return;
+      }
+    }
+  }, [token.access_token]);
+
   // console.log({ playlist });
   const tracks = playlist.map((song) => song.uri);
 
-  return (
+  return Object.keys(token).length === 0 ? (
+    <div>
+      <div className="token-not-available">
+        Audio player isn't avaliable, please generate spotify token
+      </div>
+      <div
+        className="get-token-btn"
+        onClick={(e) => {
+          const spotifyAuthUrl = `${SERVICE_URL}/spotify/grant`;
+          window.location.replace(spotifyAuthUrl);
+        }}
+      >
+        Get Token For Spotify
+      </div>
+    </div>
+  ) : (
     <div>
       <SpotifyPlayer
         styles={{
@@ -38,7 +69,10 @@ const Player = ({ playlist }) => {
         token={token.access_token}
         uris={tracks}
         callback={(state) => {
-          if (state.error) return;
+          if (state.error) {
+            setToken({});
+            return;
+          }
           const type = _.get(state, 'type');
           const progressMs = _.get(state, 'progressMs');
           if (
@@ -49,7 +83,9 @@ const Player = ({ playlist }) => {
             state?.isActive
           ) {
             console.log('song-started', { type, state });
-            currSongStarted()(dispatch);
+            setTimeout(() => {
+              currSongStarted()(dispatch);
+            }, 1000);
           }
         }}
       />

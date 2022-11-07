@@ -1,18 +1,19 @@
 @use '/src/styles/variables' as v;
 
-html, body {
+html,
+body {
   width: 100%;
-  height:  100%;
+  height: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 body {
-  margin:  0;
+  margin: 0;
   background-color: white;
-  font-family: 'Manrope',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   font-weight: 400;
   color: v.$text-color;
   -webkit-font-smoothing: antialiased;
@@ -40,7 +41,7 @@ body {
     &.open {
       border-top: 1px solid v.$lightest-blue;
       height: 50%;
-      
+
       .toggleMessages {
         transform: rotate(0deg);
       }
@@ -52,7 +53,13 @@ body {
   }
 
   .SongsListWrapper {
-    height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding + v.$add-message-height));
+    height: calc(
+      100% -
+        (
+          v.$curr-song-height + v.$main-padding + v.$main-padding +
+            v.$add-message-height
+        )
+    );
   }
 
   .MenuItems.horizontal,
@@ -74,31 +81,37 @@ body {
 
 @media only screen and (min-width: 600px) {
   aside.responsive {
-      position: absolute;
-      bottom: 0;
-      background: white;
-      width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: white;
+    width: 100%;
+
+    .toggleMessages {
+      display: block;
+    }
+
+    &.open {
+      border-top: 1px solid v.$lightest-blue;
+      height: 50%;
 
       .toggleMessages {
-        display: block;
+        transform: rotate(0deg);
       }
-      
-      &.open {
-        border-top: 1px solid v.$lightest-blue;
-        height: 50%;
+    }
 
-        .toggleMessages {
-          transform: rotate(0deg);
-        }
-      }
-
-      &.close {
-        height: v.$add-message-height;
-      }
+    &.close {
+      height: v.$add-message-height;
+    }
   }
 
   .SongsListWrapper {
-    height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding + v.$add-message-height));
+    height: calc(
+      100% -
+        (
+          v.$curr-song-height + v.$main-padding + v.$main-padding +
+            v.$add-message-height
+        )
+    );
   }
 
   .MenuItems.horizontal,
@@ -120,7 +133,7 @@ body {
 
 @media only screen and (min-width: 768px) {
   aside.responsive {
-    width:  v.$chat-width;
+    width: v.$chat-width;
     height: 100% !important;
     position: unset;
     bottom: unset;
@@ -133,7 +146,9 @@ body {
   }
 
   .SongsListWrapper {
-    height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding));
+    height: calc(
+      100% - (v.$curr-song-height + v.$main-padding + v.$main-padding)
+    );
   }
 
   .Messages {
@@ -142,10 +157,9 @@ body {
 
   .MenuItems.horizontal,
   .Header .logo {
-    display: flex  !important;
+    display: flex !important;
   }
 
-  
   .hamburger-icon {
     display: none;
   }
@@ -171,30 +185,30 @@ body {
 }
 
 @media (min-width: 1024px) {
-    ._InfoRSWP {
-      height: 80px !important;
+  ._InfoRSWP {
+    height: 80px !important;
 
-      img {
-          display: block;
+    img {
+      display: block;
+    }
+
+    > div {
+      padding-left: 20px;
+
+      p {
+        font-size: 18px;
       }
 
-      > div {
-        padding-left: 20px;
-  
-        p {
-            font-size: 18px;
-        }
-  
-        p:first-child {
-            font-size: 24px;
-            padding-bottom: 16px;
-        }
+      p:first-child {
+        font-size: 24px;
+        padding-bottom: 16px;
+      }
 
-        p:nth-child(2) {
-          span:not(:first-child) {
-            display: none;
-          }
+      p:nth-child(2) {
+        span:not(:first-child) {
+          display: none;
         }
+      }
     }
   }
 
@@ -212,19 +226,19 @@ body {
     height: 50px !important;
 
     img {
-        display: none;
+      display: none;
     }
 
     > div {
       //padding-left: 20px;
 
       p {
-          font-size: 14px;
+        font-size: 14px;
       }
 
       p:first-child {
-          font-size: 20px;
-          padding-bottom: 5px;
+        font-size: 20px;
+        padding-bottom: 5px;
       }
 
       p:nth-child(2) {
@@ -234,9 +248,29 @@ body {
       }
     }
   }
-  
+
   ._ActionsRSWP {
     padding-top: 0;
     position: relative;
   }
+}
+
+.get-token-btn {
+  padding: 20px;
+  border-radius: 40px;
+  background-color: white;
+  width: fit-content !important;
+  margin: auto;
+  height: fit-content !important;
+  margin-top: 20px;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+    opacity: v.$link-hover-opacity;
+  }
+}
+
+.token-not-available {
+  color: white;
+  padding: 55px 20px 0 20px;
 }

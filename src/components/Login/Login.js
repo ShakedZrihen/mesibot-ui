@@ -15,7 +15,7 @@ const Login = () => {
 
     useEffect(() => {
         if (profileEmail && lastPathname) {
-            history.push(lastPathname);
+            // history.push(lastPathname);
         }
     }, [profileEmail, history, lastPathname]);
     return (
