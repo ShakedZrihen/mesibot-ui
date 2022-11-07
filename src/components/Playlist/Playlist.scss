@@ -15,7 +15,6 @@
        
         .SongsListWrapper {
             padding: 0 v.$main-padding;
-            //height: calc(100% - (v.$curr-song-height + v.$main-padding + v.$main-padding));
             overflow: scroll;
         }
     }

@@ -5,9 +5,55 @@
     height: v.$curr-song-height;
     background: v.$dark-gray;
     border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .CurrSongContent {
-        padding: 40px;
+        .PlayerRSWP {
+            display: flex;
+            flex-direction: column-reverse;
+
+            ._ErrorRSWP {
+                border-top: 0px;
+                font-size: 24px;
+                color: white;
+                height: 100%;
+            }
+
+            ._ContentRSWP {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: start;
+                padding: 30px;
+                padding-bottom: 20px;
+            }
+
+            ._InfoRSWP {
+                border-bottom: 0 !important;
+                height: 80px;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+
+            ._ControlsRSWP {
+                position: absolute;
+                right: 0;
+            }
+            
+            ._SliderRSWP {
+                padding: 20px;
+            }
+
+            ._ActionsRSWP {
+                width: unset;
+            }
+        }
+
 
         .CurrSongImageAndDetails {
             display: flex;
@@ -52,18 +98,6 @@
                         color: white;
                     }
                 }
-            }
-        }
-
-        .progressBar {
-            width: 100%;
-            height: 4px;
-            background: v.$progress-bar-bg;
-            border-radius: 80px;
-    
-            .progressBarFill {
-                height: 100%;
-                background: v.$progress-bar-fill;
             }
         }
     }

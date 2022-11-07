@@ -1,22 +1,23 @@
-import SpotifyPlayer from 'react-spotify-web-playback';
+import SpotifyPlayer from "react-spotify-web-playback";
 
 const Player = () => {
   return (
     <div>
       <SpotifyPlayer
         styles={{
-          activeColor: '#fff',
-          bgColor: '#222326',
-          color: '#fff',
-          loaderColor: '#fff',
-          sliderColor: '#1cb954',
-          trackArtistColor: '#ccc',
-          trackNameColor: '#fff'
+          activeColor: "white",
+          bgColor: "unset",
+          color: "white",
+          loaderColor: "#fff",
+          sliderColor: "#17E1BD",
+          sliderTrackColor: "#61656C",
+          sliderHandleColor: "#61656C",
+          trackArtistColor: "white",
+          trackNameColor: "white",
         }}
-        token='BQDJ_3AzxSOMgDDzJ77jnfZr2bLG8fPF1-wQ9NpklwschQlYghwyueAsI-cWEH9E7GhTTft6YjhLiHvljFw_xAh0frQw0YKtDF11Rfpoa23-P6bpaYQ2TXUltjdjcV1M87RnRL9-GNBF66WiL1KeN5PL_CfbqJEno3PhTruxJWthgRkKDHyus0HYTV1bwhRe60tGFHzTfr4xNkUo144yOC1VscmjvQq95HLi'
-        uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
+        token="BQDwdtYL0k19lcgm9FJW4TcYk51NMgjyfPFzqvg63IyahjTjmuR4o1bP3zVJ6pL8XjOq-xFSk8AXn8PuC87L6N4Jk4wNdF-QY41ZtBPgD9JsDY_qASEJL9Pf8SPf2cskxcD19tLL4GbKv7JOkVuLoljJ-2iEbLqWh-_MPp1jlm-A9Rk4HbCECjkzJB0rWOhXT89CRaGDpkwc_GaLiIIM"
+        uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
       />
-      ;
     </div>
   );
 };
