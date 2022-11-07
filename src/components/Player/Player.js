@@ -1,46 +1,26 @@
+import { useState } from "react";
+import _ from "lodash";
 import SpotifyPlayer from "react-spotify-web-playback";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { currSongFinished } from "../../state/actions/playlist";
 
-const getTokenFromStorage = () => {
-  const { spotifyToken } = localStorage.getItem("spotifyToken");
-  console.log("spotifyToken: ", spotifyToken);
-  return spotifyToken ? JSON.parse(spotifyToken) : "";
-};
-
-const Player = ({ playlistData }) => {
+const Player = ({ currSong, playlist }) => {
+  const dispatch = useDispatch();
   const [token, setToken] = useState({
     access_token:
-      "BQBWUarXYNXB7ybxSXY_djE0IaEus8maxz1bnjdXx13tvYHbyqfngh3IqdTT8a14C1ki7w1bDwq04hJYtpUtD--LSRoGFlb94taYnvPKAuMePBkVaSJX4J_KvECFpSvE9VtO2e9Wwk9g8I5Nocs__Qys1x5L5wFJFkAY7uTdoG951yMbHUgCHYOcrBz1EZaQu1mOdTYyTWZAvoeMCq35",
+      "BQAWdi7VJsfiZIAK09r0oPhnW5BTpPRJeZLohErME0gEa9c9Frm3IDA5bY69a40LWTUQRYHMP9XxgWevpe6sYG0d2UY-iEO-cPFCg-TUJVg6VWyNkVuJwdhqexv-qtYrsbW1jsv2l6bhAqf9y0cumv9KE-2pOXG4q210XR48A3W6oLRQOsgvP-TmJTOWPOCZUTk18dNP5ZEICmYEf79aUqoZjG7Q3zcsUHd9",
     token_type: "Bearer",
     expires_in: 3600,
     refresh_token:
-      "AQBKdjD3btnSya4BYzwufkXM2tOMZGoYgQdXrSDVIAcCMOpUGBYGeK5jg6tLolr8vxQDhW6NQZeo-bAhpFxrErltiZfY4CMKOJx8R7ht_VDElI_nF9yTesfU_5LvAwRVAE0",
+      "AQBkRmeUBcfewRDCQ32lhyRDi82OoSlb_6HrZFtrTJ4fB9Qkb81XvU0FElrZGOeDnnSmrb146HIyDr3sSSIlZOX3M3EgKPPsWtxxdRs0EJACNBz9oAZpJsuxB1vycBnYl9Y",
     scope:
       "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read",
   });
+  const currSongUri = _.get(currSong, "uri");
+  console.log({ currSong, currSongUri });
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     const refresh = async () => {
-  //       console.log("refreshing...");
-  //       const res = await axios
-  //         .post("https://mesibot.ngrok.io/spotify/refresh", {
-  //           token,
-  //         })
-  //         .catch((e) => console.log({ e }));
-  //       console.log({ res });
-  //       setToken({ ...res.data, refresh_token: token.refresh_token });
-  //       localStorage.setItem(
-  //         "spotifyToken",
-  //         JSON.stringify({ ...res.data, refresh_token: token.refresh_token })
-  //       );
-  //     };
-  //     refresh();
-  //   }, 200000);
-  // }, [token.access_token]);
-
-  const tracks = playlistData?.map(({ uri }) => uri);
+  const tracks = [currSongUri, ...playlist.map((song) => song.uri)];
+  console.log("flom", { tracks });
   return (
     <div>
       <SpotifyPlayer
@@ -57,6 +37,14 @@ const Player = ({ playlistData }) => {
         }}
         token={token.access_token}
         uris={tracks}
+        callback={(state) => {
+          const PlayerSongUri = _.get(state, "track.uri");
+          const nextTrackUri = _.get(state, "nextTracks[0].uri");
+          if (!!currSongUri && currSongUri !== PlayerSongUri) {
+            console.log("song-finished!");
+            return currSongFinished()(dispatch);
+          }
+        }}
       />
     </div>
   );
