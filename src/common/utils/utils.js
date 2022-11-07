@@ -1,5 +1,6 @@
 import QueryString from 'query-string';
 import _ from 'lodash';
+import history from '../../routes/history';
 
 export const LOCAL_STORAGE_KEYS = {
     SLACK_AUTH_QS: 'userSlackId',
@@ -22,4 +23,12 @@ export const omitFromQs = (
         `${window.location.pathname}${newSearchString ? `?${newSearchString}` : ''}`
     );
     return paramValue;
+}
+
+export const getPlaylistIdFromUrl = () => {
+    const pathnameArr = history.location.pathname.split('/');
+    const route = _.get(pathnameArr, '[1]');
+    const playlistId = _.get(pathnameArr, '[2]');
+    if (route === 'playlist')
+        return playlistId;
 }

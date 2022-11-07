@@ -1,24 +1,6 @@
-import "./SongsList.scss";
-import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
+import './SongsList.scss';
 
-const getPlaylist = async () =>
-  axios.get("https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM");
-
-const SongsList = ({ className }) => {
-  const [playlist, setPlaylist] = useState({});
-  const getPlaylistBlah = async () => {
-    const playlist = await getPlaylist();
-    setPlaylist(playlist);
-  };
-
-  useEffect(() => {
-    getPlaylistBlah();
-  }, []);
-
-  const playlistData = playlist.data;
-
+const SongsList = ({ className, playlistData }) => {
   // const playlist1 = {
   //   data: [
   //     {
@@ -68,33 +50,34 @@ const SongsList = ({ className }) => {
   //   request: {},
   // };
 
+  const millisToMinutesAndSeconds = (millis) => {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds ?? 0;
+  };
+
   return (
     <div className={`SongsList ${className}`}>
       <table>
         {playlistData &&
-          playlistData.map(
-            ({ name, artist, image, priority, length = "3:13" }, i) => {
-              return (
-                <tr>
-                  <td className="songNumber">{i + 1}</td>
-                  <td>
-                    <div
-                      className="songImage"
-                      style={{ backgroundImage: `url(${image})` }}
-                    ></div>
-                  </td>
-                  <td className="songDetails">
-                    <div className="songName">{name}</div>
-                    <div className="songArtist">{artist}</div>
-                  </td>
-                  <td>
-                    <div className="songUser"></div>
-                  </td>
-                  <td className="songLength">{length}</td>
-                </tr>
-              );
-            }
-          )}
+          playlistData.map(({ name, artist, image, priority, duration_ms, addedBy }, i) => {
+            return (
+              <tr>
+                <td className='songNumber'>{i + 1}</td>
+                <td>
+                  <div className='songImage' style={{ backgroundImage: `url(${image})` }}></div>
+                </td>
+                <td className='songDetails'>
+                  <div className='songName'>{name}</div>
+                  <div className='songArtist'>{artist}</div>
+                </td>
+                <td>
+                  <div className='songUser' style={{ backgroundImage: `url(${addedBy.avatar})` }}></div>
+                </td>
+                <td className='songLength'>{millisToMinutesAndSeconds(duration_ms)}</td>
+              </tr>
+            );
+          })}
       </table>
     </div>
   );

@@ -1,11 +1,11 @@
 import Player from "../Player/Player";
 import "./CurrSong.scss";
 
-const CurrSong = ({ className }) => {
+const CurrSong = ({ className, playlistData }) => {
   return (
     <div className={`CurrSong ${className}`}>
       <div className="CurrSongContent">
-        <Player />
+        <Player playlistData={playlistData}></Player>
       </div>
     </div>
   );
