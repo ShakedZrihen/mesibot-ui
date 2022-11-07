@@ -20,6 +20,7 @@
     }
 
     & > aside {
+        z-index: 100;
         border-left: 1px solid v.$lightest-blue;
     }
 }
