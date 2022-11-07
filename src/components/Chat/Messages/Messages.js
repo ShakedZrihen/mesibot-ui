@@ -1,29 +1,41 @@
 import "./Messages.scss";
-import _ from 'lodash';
+import _ from "lodash";
 import Message from "./Message";
 import { useSelector } from "react-redux";
 import { chatMessagesSelector } from "../../../state/selectors/chat";
 import { useEffect, useState } from "react";
 
 const ColorPicker = () => {
-  const colors = ['purple', 'blue', 'orange', 'turquoise', 'light-purple', 'red'];
+  const colors = [
+    "purple",
+    "blue",
+    "orange",
+    "turquoise",
+    "light-purple",
+    "red",
+    "light-pink",
+    "light-yellow",
+    "light-gray",
+    "light-green",
+    "peach",
+    "lilach",
+    "light-purple",
+  ];
   const authorsColors = {};
   return {
     getColorByAuthor: (author) => {
-      if (!authorsColors[author])
-        authorsColors[author] = _.sample(colors);
+      if (!authorsColors[author]) authorsColors[author] = _.sample(colors);
       return authorsColors[author];
-    }
-  }
-}
-
+    },
+  };
+};
 
 const Messages = ({ className }) => {
   const messages = useSelector(chatMessagesSelector);
   const [colorPicker, setColorPicker] = useState(ColorPicker());
   useEffect(() => {
     setColorPicker(ColorPicker());
-  }, [])
+  }, []);
   // const messages = [
   //   { author: "Oriel", message: "שניצל פקטורי?", color: "blue" },
   //   {
