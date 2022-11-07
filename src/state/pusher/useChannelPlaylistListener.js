@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { recieveNewMessage } from "../actions/chat";
-import { dislikeSong, likeSong, updatePlaylist } from "../actions/playlist";
+import { dislikeSong, likeSong, newSong, updatePlaylist } from "../actions/playlist";
 import chatEvents from "./chat.events";
 import playlistEvents from "./playlist.events";
 
@@ -28,6 +28,10 @@ const useChannelPlaylistListener = ({ pusher, playlistId }) => {
 
         playlistChannel.bind(playlistEvents.DISLIKE_SONG, song => {
             dislikeSong(song)(dispatch);
+        });
+
+        playlistChannel.bind(playlistEvents.NEW_SONG, song => {
+            newSong(song)(dispatch);
         });
     }
 }

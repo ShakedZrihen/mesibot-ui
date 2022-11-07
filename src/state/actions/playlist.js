@@ -7,6 +7,7 @@ export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 export const CURR_SONG_STARTED = 'CURR_SONG_STARTED';
 export const LIKE_SONG = 'LIKE_SONG';
 export const DISLIKE_SONG = 'DISLIKE_SONG';
+export const NEW_SONG = 'NEW_SONG';
 
 const PLAYLIST_SERVICE_URI = `${SERVICE_URL}/spotify/playlist`;
 
@@ -42,6 +43,13 @@ export const likeSong = (song) => async dispatch => {
 export const dislikeSong = (song) => async dispatch => {
     dispatch({
         type: DISLIKE_SONG,
+        payload: song
+    })
+}
+
+export const newSong = (song) => async dispatch => {
+    dispatch({
+        type: NEW_SONG,
         payload: song
     })
 }
