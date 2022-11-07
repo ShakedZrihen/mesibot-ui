@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { recieveNewMessage } from "../actions/chat";
-import { updatePlaylist } from "../actions/playlist";
+import { dislikeSong, likeSong, updatePlaylist } from "../actions/playlist";
 import chatEvents from "./chat.events";
 import playlistEvents from "./playlist.events";
 
@@ -17,9 +17,17 @@ const useChannelPlaylistListener = ({ pusher, playlistId }) => {
         });
 
         /*playlist events*/
-        playlistChannel.bind(playlistEvents.UPDATE_PLAYLIST, playlist => {
-            console.log('update-playlist-listener', { playlist });
-            updatePlaylist(playlist)(dispatch);
+        // playlistChannel.bind(playlistEvents.UPDATE_PLAYLIST, playlist => {
+        //     console.log('update-playlist-listener', { playlist });
+        //     updatePlaylist(playlist)(dispatch);
+        // });
+
+        playlistChannel.bind(playlistEvents.LIKE_SONG, song => {
+            likeSong(song)(dispatch);
+        });
+
+        playlistChannel.bind(playlistEvents.DISLIKE_SONG, song => {
+            dislikeSong(song)(dispatch);
         });
     }
 }

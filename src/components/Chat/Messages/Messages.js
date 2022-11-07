@@ -10,7 +10,6 @@ const ColorPicker = () => {
   const authorsColors = {};
   return {
     getColorByAuthor: (author) => {
-      console.log({ authorsColors, author });
       if (!authorsColors[author])
         authorsColors[author] = _.sample(colors);
       return authorsColors[author];
