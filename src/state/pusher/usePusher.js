@@ -18,9 +18,7 @@ const usePusher = () => {
         cluster: PUSHER_ENV.CLUSTER,
     });
 
-    const playlistChannel = pusher.subscribe(playlistId);
-
-    useChannelPlaylistListener(playlistChannel)
+    useChannelPlaylistListener({ pusher, playlistId })
 
     useEffect(() => {
         return () => {
