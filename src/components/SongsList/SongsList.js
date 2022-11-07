@@ -72,7 +72,11 @@ const SongsList = ({ className, playlistData }) => {
                   <div className='songArtist'>{artist}</div>
                 </td>
                 <td>
-                  <div className='songUser' style={{ backgroundImage: `url(${addedBy.avatar})` }}></div>
+                  <div
+                    className='songUser'
+                    title={addedBy.name}
+                    style={{ backgroundImage: `url(${addedBy.avatar})` }}
+                  ></div>
                 </td>
                 <td className='songLength'>{millisToMinutesAndSeconds(duration_ms)}</td>
               </tr>
