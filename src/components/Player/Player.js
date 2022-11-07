@@ -11,11 +11,11 @@ const getTokenFromStorage = () => {
 const Player = ({ playlistData }) => {
   const [token, setToken] = useState({
     access_token:
-      "BQDIld6kkdeBqt3MC8M71BueUZL4NNAz4mMtePTww-JIQey7eainycO0X0jy_BFKQfojt0-EZyni9X5-SW-CbN4rBg31ke7kNY1d2sbc8zB-Y_p6-Ituoh7abKBPfBcgMjOsIqYPrHcWluHqu5fZfiEZcmKnkd-2x0IbwjpzseHSuMTCF_7yu3VOhFEjlcQl9xHGRa-223l4CVuUjG6D",
+      "BQBWUarXYNXB7ybxSXY_djE0IaEus8maxz1bnjdXx13tvYHbyqfngh3IqdTT8a14C1ki7w1bDwq04hJYtpUtD--LSRoGFlb94taYnvPKAuMePBkVaSJX4J_KvECFpSvE9VtO2e9Wwk9g8I5Nocs__Qys1x5L5wFJFkAY7uTdoG951yMbHUgCHYOcrBz1EZaQu1mOdTYyTWZAvoeMCq35",
     token_type: "Bearer",
     expires_in: 3600,
     refresh_token:
-      "AQCt22lEZrWyi9heriCoF0vOt96Gu2PTdYIXhYJCawZ-LC66fnh3EQJ5nnjGRT0_VSLlGT5D_ll4CK6PKOFtah7kfFqKcFLPr74X0IC8y4b0GeIy81CIVZmqPF6a72nmr4k",
+      "AQBKdjD3btnSya4BYzwufkXM2tOMZGoYgQdXrSDVIAcCMOpUGBYGeK5jg6tLolr8vxQDhW6NQZeo-bAhpFxrErltiZfY4CMKOJx8R7ht_VDElI_nF9yTesfU_5LvAwRVAE0",
     scope:
       "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read",
   });
