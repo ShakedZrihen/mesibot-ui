@@ -13,8 +13,9 @@ const playlistReducer = (state = [], action) => {
         //     const playlist = orderPlaylist(action.payload.slice(1));
         //     return orderPlaylist([firstSong, ...playlist]);
         case CURR_SONG_STARTED:
-            const playlistWithoutFirst = state.slice(1);
-            return orderPlaylist(playlistWithoutFirst.map((song, idx) => idx === 0 ? { ...song, priority: 100000 } : song));
+            return orderPlaylist(state.slice(1));
+        // const playlistWithoutFirst = state.slice(1);
+        // return orderPlaylist(playlistWithoutFirst.map((song, idx) => idx === 0 ? { ...song, priority: 100000 } : song));
         case LIKE_SONG:
             console.log('like-song-reducer', { song: action.payload })
             return orderPlaylist(state.map(song => song.uri === action.payload.uri

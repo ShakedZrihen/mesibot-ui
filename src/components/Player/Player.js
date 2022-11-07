@@ -16,7 +16,7 @@ const Player = ({ playlist }) => {
     scope:
       "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read",
   });
-  console.log({ playlist });
+  // console.log({ playlist });
   const tracks = playlist.map((song) => song.uri);
 
   return (
