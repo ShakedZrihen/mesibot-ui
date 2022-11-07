@@ -16,10 +16,24 @@ const Player = ({ playlist }) => {
     scope:
       'streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read'
   });
-  // console.log({ playlist });
-  const tracks = playlist.map((song) => song.uri);
 
-  return (
+  const tracks = playlist.map((song) => song.uri);
+  console.log('flom', { tracks });
+  console.log('TOKEN: ', token);
+  return Object.keys(token).length === 0 ? (
+    <div>
+      <div className='token-not-available'>Audio player isn't avaliable, please generate spotify token</div>
+      <div
+        className='get-token-btn'
+        onClick={(e) => {
+          e.stopPropagation();
+          setToken('');
+        }}
+      >
+        Get Token For Spotify
+      </div>
+    </div>
+  ) : (
     <div>
       <SpotifyPlayer
         styles={{
@@ -49,6 +63,9 @@ const Player = ({ playlist }) => {
           ) {
             console.log('song-started', { type, state });
             currSongStarted()(dispatch);
+          }
+          if(state.error) {
+            setToken({});
           }
         }}
       />
