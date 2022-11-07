@@ -1,24 +1,7 @@
 import "./SongsList.scss";
-import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
 
-const getPlaylist = async () =>
-  axios.get("https://mesibot.ngrok.io/spotify/playlist/C049M53M0GM");
 
-const SongsList = ({ className }) => {
-  const [playlist, setPlaylist] = useState({});
-  const getPlaylistBlah = async () => {
-    const playlist = await getPlaylist();
-    setPlaylist(playlist);
-  };
-
-  useEffect(() => {
-    getPlaylistBlah();
-  }, []);
-
-  const playlistData = playlist.data;
-
+const SongsList = ({ className, playlistData }) => {
   // const playlist1 = {
   //   data: [
   //     {
