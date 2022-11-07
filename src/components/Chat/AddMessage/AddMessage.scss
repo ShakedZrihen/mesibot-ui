@@ -1,12 +1,14 @@
 @use '../../../styles/variables' as v;
 
 .AddMessage {
+    display: flex;
     border-top: 1px solid v.$lightest-blue;
     padding: 15px;
 
     input {
         outline: none;
-        width: calc(100% - 40px);
+        //width: calc(100% - 100px);
+        width: 100%;
         height: v.$add-message-input-height;
         border-radius: v.$add-message-input-height;
         border: 1px solid v.$lightest-blue;
@@ -16,5 +18,17 @@
         font-size: 16px;
         background: no-repeat url(../../../images/send.png);
         background-position: calc(100% - 20px) 15px;
+    }
+
+    .toggleMessages {
+        cursor: pointer;
+        margin-left: 10px;
+        height: v.$add-message-input-height;
+        width: 62px;
+        border-radius: 50%;
+        border: 1px solid  v.$lightest-blue;
+        background: no-repeat url(../../../images/arrow-down.png) center center;
+        background-size: 20px 20px;
+        transform: rotate(180deg);
     }
 }
