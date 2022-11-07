@@ -63,6 +63,11 @@ body {
   .hamburger-icon {
     display: block;
   }
+
+  .songImageCell,
+  .songUserCell {
+    display: none;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -104,6 +109,11 @@ body {
   .hamburger-icon {
     display: block;
   }
+
+  .songImageCell,
+  .songUserCell {
+    display: none;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -138,6 +148,11 @@ body {
   
   .hamburger-icon {
     display: none;
+  }
+
+  .songImageCell,
+  .songUserCell {
+    display: block;
   }
 }
 
@@ -193,7 +208,7 @@ body {
 
       p:first-child {
           font-size: 18px;
-          padding-bottom: 12px;
+          padding-bottom: 10px;
       }
 
       p:nth-child(2) {
@@ -204,11 +219,8 @@ body {
     }
   }
 
-  ._ContentRSWP > * {
-    width: unset;
-  }
-
   ._ActionsRSWP {
     position: relative;
+    left: 20px;
   }
 }

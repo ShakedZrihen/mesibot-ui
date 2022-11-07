@@ -10,16 +10,11 @@
     justify-content: center;
 
     .CurrSongContent {
+        width: 100%;
+
         .PlayerRSWP {
             display: flex;
             flex-direction: column-reverse;
-
-            ._ErrorRSWP {
-                border-top: 0px;
-                font-size: 24px;
-                color: white;
-                height: 100%;
-            }
 
             ._ContentRSWP {
                 display: flex;
@@ -28,6 +23,18 @@
                 justify-content: start;
                 padding: 30px;
                 padding-bottom: 20px;
+
+                > * {
+                    width: unset;
+                }
+
+                ._ErrorRSWP {
+                    border-top: 0px;
+                    font-size: 24px;
+                    color: white;
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             ._InfoRSWP {
@@ -42,7 +49,7 @@
 
             ._ControlsRSWP {
                 position: absolute;
-                right: 0;
+                right: 20px;
             }
             
             ._SliderRSWP {
@@ -50,10 +57,10 @@
             }
 
             ._ActionsRSWP {
+                padding-top: 20px;
                 width: unset;
             }
         }
-
 
         .CurrSongImageAndDetails {
             display: flex;
