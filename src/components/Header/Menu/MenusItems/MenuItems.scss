@@ -18,6 +18,7 @@
     }
 
     &.vertical {
+        z-index: 100;
         position: absolute;
         left: 0;
         top: v.$header-height;
