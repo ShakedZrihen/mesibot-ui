@@ -1,5 +1,4 @@
-import "./SongsList.scss";
-
+import './SongsList.scss';
 
 const SongsList = ({ className, playlistData }) => {
   // const playlist1 = {
@@ -51,55 +50,34 @@ const SongsList = ({ className, playlistData }) => {
   //   request: {},
   // };
 
+  const millisToMinutesAndSeconds = (millis) => {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds ?? 0;
+  };
+
   return (
     <div className={`SongsList ${className}`}>
       <table>
-        <tbody>
-          {playlistData &&
-            playlistData.map(
-              ({ name, artist, image, priority, length = "3:13" }, i) => {
-                return (
-                  <tr key={name}>
-                    <td className="songNumber">{i + 1}</td>
-                    <td>
-                      <div
-                        className="songImage"
-                        style={{ backgroundImage: `url(${image})` }}
-                      ></div>
-                    </td>
-                    <td className="songDetails">
-                      <div className="songName">{name}</div>
-                      <div className="songArtist">{artist}</div>
-                    </td>
-                    <td>
-                      <div className="songUser"></div>
-                    </td>
-                    <td className="songLength">{length}</td>
-                  </tr>
-                );
-              }
-            )}
-        </tbody>
-        <tbody>
-          {[...Array(10)].map((e, i) => {
+        {playlistData &&
+          playlistData.map(({ name, artist, image, priority, duration_ms, addedBy }, i) => {
             return (
-              <tr key={i}>
-                <td className="songNumber">{i}</td>
+              <tr>
+                <td className='songNumber'>{i + 1}</td>
                 <td>
-                  <div className="songImage"></div>
+                  <div className='songImage' style={{ backgroundImage: `url(${image})` }}></div>
                 </td>
-                <td className="songDetails">
-                  <div className="songName">You and I</div>
-                  <div className="songArtist">Lady Gaga</div>
+                <td className='songDetails'>
+                  <div className='songName'>{name}</div>
+                  <div className='songArtist'>{artist}</div>
                 </td>
                 <td>
-                  <div className="songUser"></div>
+                  <div className='songUser' style={{ backgroundImage: `url(${addedBy.avatar})` }}></div>
                 </td>
-                <td className="songLength">3:13</td>
+                <td className='songLength'>{millisToMinutesAndSeconds(duration_ms)}</td>
               </tr>
             );
           })}
-        </tbody>
       </table>
     </div>
   );
