@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import _ from 'lodash';
 import SpotifyPlayer from 'react-spotify-web-playback';
+import { useDispatch } from 'react-redux';
+import { currSongFinished } from '../../state/actions/playlist';
 
 const Player = ({ currSong, playlist }) => {
-  const [token, setToken] = useState({ "access_token": "BQB7yYzvW-4OUydC6FhuYdWLGTo8jHjN0iRlkNeIcETjbQGEbgp4b6gIupVMRpmzhN3Y2m8ae5vOut0VaAqZiEFG2UURTybrk9Z0u8gxOggAEVTdQrsJPyK7L9mnsOd2zgc_t3A_Wrw1yxSfHBmvXrjZLOeGccKKv6qb9IImFbSO8zMcEqJhxuF7mx7AePDe2BU6KyYhzZMQLnQstAtaW-znc34utsnMjzYx", "token_type": "Bearer", "expires_in": 3600, "refresh_token": "AQCoPaZOd55XDwGNAyKP5GK6ULkYRYgEFiASzxWY4NvsoSVe4XQ_8rNDXdK2dqbs8LwmkYznpYSzXpUp5LOpmDLOW4bHLpVC3TkmpJL8OVZmNmy3j1bkq4mWewoN_Qsjmr0", "scope": "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read" });
+  const dispatch = useDispatch();
+  const [token, setToken] = useState({ "access_token": "BQAWdi7VJsfiZIAK09r0oPhnW5BTpPRJeZLohErME0gEa9c9Frm3IDA5bY69a40LWTUQRYHMP9XxgWevpe6sYG0d2UY-iEO-cPFCg-TUJVg6VWyNkVuJwdhqexv-qtYrsbW1jsv2l6bhAqf9y0cumv9KE-2pOXG4q210XR48A3W6oLRQOsgvP-TmJTOWPOCZUTk18dNP5ZEICmYEf79aUqoZjG7Q3zcsUHd9", "token_type": "Bearer", "expires_in": 3600, "refresh_token": "AQBkRmeUBcfewRDCQ32lhyRDi82OoSlb_6HrZFtrTJ4fB9Qkb81XvU0FElrZGOeDnnSmrb146HIyDr3sSSIlZOX3M3EgKPPsWtxxdRs0EJACNBz9oAZpJsuxB1vycBnYl9Y", "scope": "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read" });
   const currSongUri = _.get(currSong, 'uri');
   console.log({ currSong, currSongUri });
 
@@ -25,6 +28,14 @@ const Player = ({ currSong, playlist }) => {
         }}
         token={token.access_token}
         uris={tracks}
+        callback={(state) => {
+          const PlayerSongUri = _.get(state, 'track.uri');
+          const nextTrackUri = _.get(state, 'nextTracks[0].uri');
+          if (!!currSongUri && currSongUri !== PlayerSongUri) {
+            console.log('song-finished!');
+            return currSongFinished()(dispatch);
+          }
+        }}
       />
     </div>
   );
