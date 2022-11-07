@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Route, useHistory, useLocation } from "react-router-dom";
-import { LOCAL_STORAGE_KEYS } from '../../components/common/utils/utils';
+import { LOCAL_STORAGE_KEYS } from '../../common/utils/utils';
 import { PROFILE_STATES } from "../../state/reducers/profile";
 import { profileSelector } from "../../state/selectors/profile";
 import ROUTES_MODEL from "../routes.model";

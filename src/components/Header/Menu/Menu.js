@@ -1,21 +1,22 @@
 import { useSelector } from "react-redux";
-import { PROFILE_STATES } from "../../../state/reducers/profile";
+import { slackAuth } from "../../../common/utils/auth.service";
 import { profileSelector } from "../../../state/selectors/profile";
-import { slackAuth } from "../../common/utils/auth.service";
+
 import "./Menu.scss";
 import MenuItems from "./MenusItems";
 
 const Menu = ({ className }) => {
   const profile = useSelector(profileSelector);
 
+  const isConnected = !!profile.email;
   return (
     <div className={`Menu ${className}`}>
-      <MenuItems className="horizontal" />
+      {isConnected && <MenuItems className="horizontal" />}
 
-      {profile === PROFILE_STATES.NOT_AUTH ? (
-        <div className="menuButton" onClick={slackAuth}>Login</div>
-      ) : (
+      {isConnected ? (
         <div className="menuButton">Add Song</div>
+      ) : (
+        <div className="menuButton" onClick={slackAuth}>Login</div>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../../state/actions/profile";
-import { LOCAL_STORAGE_KEYS, omitFromQs } from "../common/utils/utils";
+import { LOCAL_STORAGE_KEYS, omitFromQs } from "../../common/utils/utils";
 
 const useAuth = () => {
     const dispatch = useDispatch();

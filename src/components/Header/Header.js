@@ -19,7 +19,7 @@ const Header = ({ className }) => {
       </div>
       <div className="logo"></div>
       <nav>
-        <Menu className="horizontal" />
+        <Menu />
       </nav>
     </div>
   );

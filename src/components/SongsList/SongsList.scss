@@ -33,6 +33,16 @@
             
             td.songDetails {
                width: 100%;
+               text-align: left;
+
+               .songName {
+                font-size: 18px;
+               }
+
+               .songArtist {
+                padding-top: 8px;
+                font-size: 14px;
+               }
             }
 
             td.songLength {
