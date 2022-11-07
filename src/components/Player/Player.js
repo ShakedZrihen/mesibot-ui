@@ -2,9 +2,9 @@ import { useState } from "react";
 import _ from "lodash";
 import SpotifyPlayer from "react-spotify-web-playback";
 import { useDispatch } from "react-redux";
-import { currSongFinished } from "../../state/actions/playlist";
+import { currSongStarted } from "../../state/actions/playlist";
 
-const Player = ({ currSong, playlist }) => {
+const Player = ({ playlist }) => {
   const dispatch = useDispatch();
   const [token, setToken] = useState({
     access_token:
@@ -16,11 +16,9 @@ const Player = ({ currSong, playlist }) => {
     scope:
       "streaming user-modify-playback-state user-read-playback-state user-read-currently-playing user-read-email user-read-private user-top-read",
   });
-  const currSongUri = _.get(currSong, "uri");
-  console.log({ currSong, currSongUri });
+  console.log({ playlist });
+  const tracks = playlist.map((song) => song.uri);
 
-  const tracks = [currSongUri, ...playlist.map((song) => song.uri)];
-  console.log("flom", { tracks });
   return (
     <div>
       <SpotifyPlayer
@@ -38,11 +36,11 @@ const Player = ({ currSong, playlist }) => {
         token={token.access_token}
         uris={tracks}
         callback={(state) => {
-          const PlayerSongUri = _.get(state, "track.uri");
-          const nextTrackUri = _.get(state, "nextTracks[0].uri");
-          if (!!currSongUri && currSongUri !== PlayerSongUri) {
-            console.log("song-finished!");
-            return currSongFinished()(dispatch);
+          const type = _.get(state, 'type');
+          const progressMs = _.get(state, 'progressMs');
+          if (type === 'track_update' && progressMs === 0) {
+            console.log('song-started', { type });
+            currSongStarted()(dispatch);
           }
         }}
       />
