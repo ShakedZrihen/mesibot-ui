@@ -1,5 +1,4 @@
 import './Playlist.scss';
-import _ from 'lodash';
 import CurrSong from '../CurrSong';
 import SongsList from '../SongsList';
 import Chat from '../Chat';
@@ -12,12 +11,12 @@ const Playlist = ({ className }) => {
   const dispatch = useDispatch();
   const [isChatOpen, setIsChatOpen] = useState(false);
   // const [currSong, setCurrSong] = useState();
-  const playlist = useSelector(playlistSelector);
-
+  const { songs: playlist, currSong } = useSelector(playlistSelector);
+  console.log({ playlist, currSong });
   // const firstSong = _.get(playlist, '[0]');
 
   useEffect(() => {
-    fetchPlaylist()(dispatch)
+    fetchPlaylist()(dispatch);
   }, [dispatch]);
 
   // useEffect(() => {
@@ -27,14 +26,14 @@ const Playlist = ({ className }) => {
   return (
     <div className={`Playlist ${className}`}>
       <main>
-        <div className='CurrSongWrapper'>
+        <div className="CurrSongWrapper">
           <CurrSong playlist={playlist} />
         </div>
-        <div className='SongsListWrapper'>
+        <div className="SongsListWrapper">
           <SongsList playlistData={playlist} />
         </div>
       </main>
-      <aside className={`responsive ${isChatOpen ? "open" : "close"}`}>
+      <aside className={`responsive ${isChatOpen ? 'open' : 'close'}`}>
         <Chat setIsChatOpen={setIsChatOpen} isChatOpen={isChatOpen} />
       </aside>
     </div>

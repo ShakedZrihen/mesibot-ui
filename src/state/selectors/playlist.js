@@ -1,2 +1,2 @@
-
-export const playlistSelector = state => state.playlist || [];
+export const playlistSelector = (state) =>
+  state.playlist || { songs: [], currSong: null };
