@@ -27,7 +27,7 @@ const Playlist = ({ className }) => {
     <div className={`Playlist ${className}`}>
       <main>
         <div className="CurrSongWrapper">
-          <CurrSong playlist={playlist} />
+          <CurrSong playlist={playlist} currSong={currSong} />
         </div>
         <div className="SongsListWrapper">
           <SongsList playlistData={playlist} />

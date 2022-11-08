@@ -8,10 +8,23 @@ import { LOCAL_STORAGE_KEYS } from '../../common/utils/utils';
 import { SERVICE_URL } from '../../common/utils/api.consts';
 import axios from 'axios';
 
-const Player = ({ playlist }) => {
+const Player = ({ currSong, playlist }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [token, setToken] = useState({});
+  const [orderedPlaylilst, setOrderedPlaylist] = useState(playlist || []);
+  const [playing, setPlaying] = useState(currSong?.uri);
+
+  useEffect(() => {
+    console.log({ currSong, playing });
+    if (
+      currSong?.uri !== playing ||
+      playlist?.length !== orderedPlaylilst.length
+    ) {
+      setPlaying(currSong?.uri);
+      setOrderedPlaylist(playlist);
+    }
+  }, [currSong, playlist]);
 
   useEffect(() => {
     const getToken = async (code) => {
@@ -19,8 +32,14 @@ const Player = ({ playlist }) => {
         `${SERVICE_URL}/spotify/redirect?code=${code}`
       );
       setToken(token);
+      localStorage.setItem('token', JSON.stringify(token));
       localStorage.removeItem(LOCAL_STORAGE_KEYS.CODE);
     };
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    if (tokenFromLocalStorage) {
+      setToken(JSON.parse(tokenFromLocalStorage));
+      return;
+    }
     if (!token.access_token) {
       const pathname = _.get(location, 'pathname');
       localStorage.setItem(LOCAL_STORAGE_KEYS.LAST_PATHNAME, pathname);
@@ -33,8 +52,8 @@ const Player = ({ playlist }) => {
   }, [token.access_token]);
 
   // console.log({ playlist });
-  const tracks = playlist.map((song) => song.uri);
-
+  const tracks = orderedPlaylilst.map((song) => song.uri);
+  console.log({ tracks });
   return Object.keys(token).length === 0 ? (
     <div>
       <div className="token-not-available">
@@ -67,25 +86,17 @@ const Player = ({ playlist }) => {
         syncExternalDevice={true}
         magnifySliderOnHover={true}
         token={token.access_token}
-        uris={tracks}
+        uris={_.uniq([playing, ...tracks]).filter(Boolean)}
         callback={(state) => {
+          console.log('state', state);
           if (state.error) {
             setToken({});
             return;
           }
           const type = _.get(state, 'type');
-          const progressMs = _.get(state, 'progressMs');
-          if (
-            type === 'track_update' &&
-            progressMs === 0 &&
-            state?.status === 'READY' &&
-            state?.isPlaying &&
-            state?.isActive
-          ) {
+          if (state?.track.uri !== currSong?.uri) {
             console.log('song-started', { type, state });
-            setTimeout(() => {
-              currSongStarted()(dispatch);
-            }, 1000);
+            currSongStarted()(dispatch);
           }
         }}
       />

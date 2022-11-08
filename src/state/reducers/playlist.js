@@ -14,8 +14,10 @@ const playlistReducer = (state = { songs: [], currSong: null }, action) => {
   console.log({ action, state });
   switch (action.type) {
     case FETCH_PLAYLIST:
-      console.log({ playlist: action.payload });
-      return { ...state, songs: orderPlaylist(action.payload) };
+      return {
+        currSong: null,
+        songs: orderPlaylist(action.payload)
+      };
 
     // case UPDATE_PLAYLIST:
     //     const firstSong = _.get(action, 'payload[0]');
@@ -27,7 +29,7 @@ const playlistReducer = (state = { songs: [], currSong: null }, action) => {
       if (!firstSong) return { ...state, songs: [action.payload] };
       return {
         ...state,
-        songs: [state.currSong, ...orderPlaylist(state.songs), action.payload]
+        songs: orderPlaylist(state.songs)
       };
     //   console.log({
     //     first: state[0],
@@ -48,9 +50,10 @@ const playlistReducer = (state = { songs: [], currSong: null }, action) => {
 
     case CURR_SONG_STARTED:
       const playlistWithoutFirst = {
-        currSong: state.songs[0],
-        songs: orderPlaylist(state.songs.slice(1))
+        currSong: state.songs?.[0],
+        songs: state.songs?.[1] ? orderPlaylist(state.songs.slice(1)) : []
       };
+      console.log({ playlistWithoutFirst });
       return playlistWithoutFirst;
 
     case LIKE_SONG:

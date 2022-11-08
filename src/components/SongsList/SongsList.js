@@ -1,10 +1,11 @@
-import "./SongsList.scss";
+import './SongsList.scss';
 
 const SongsList = ({ className, playlistData }) => {
+  console.log({ playlistData });
   const millisToMinutesAndSeconds = (millis) => {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds ?? 0;
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds ?? 0;
   };
 
   return (

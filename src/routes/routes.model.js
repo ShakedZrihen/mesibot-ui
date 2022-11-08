@@ -18,6 +18,7 @@ const NotFound = () => {
     const pathname = _.get(location, 'pathname');
     if (lastPathname && pathname !== lastPathname) {
       history.push(lastPathname);
+      window.location.reload();
     }
   }, []);
 
