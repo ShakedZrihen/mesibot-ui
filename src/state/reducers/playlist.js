@@ -29,7 +29,7 @@ const playlistReducer = (state = { songs: [], currSong: null }, action) => {
       if (!firstSong) return { ...state, songs: [action.payload] };
       return {
         ...state,
-        songs: orderPlaylist(state.songs)
+        songs: orderPlaylist([...state.songs, action.payload])
       };
     //   console.log({
     //     first: state[0],

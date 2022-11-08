@@ -19,7 +19,7 @@ const Player = ({ currSong, playlist }) => {
     console.log({ currSong, playing });
     if (
       currSong?.uri !== playing ||
-      playlist?.length !== orderedPlaylilst.length
+      (playlist?.length && !orderedPlaylilst.length)
     ) {
       setPlaying(currSong?.uri);
       setOrderedPlaylist(playlist);
