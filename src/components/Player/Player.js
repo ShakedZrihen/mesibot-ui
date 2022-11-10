@@ -16,7 +16,14 @@ const Player = ({ currSong, playlist }) => {
   const [playing, setPlaying] = useState(currSong?.uri);
 
   useEffect(() => {
-    console.log({ currSong, playing });
+    console.log({
+      currSong,
+      playing,
+      playlist,
+      condition:
+        currSong?.uri !== playing ||
+        (playlist?.length && !orderedPlaylilst.length)
+    });
     if (
       currSong?.uri !== playing ||
       (playlist?.length && !orderedPlaylilst.length)
@@ -94,11 +101,12 @@ const Player = ({ currSong, playlist }) => {
             return;
           }
           const type = _.get(state, 'type');
-          if (state?.track.uri !== currSong?.uri) {
+          if (type === 'track_update' && state?.track.uri !== currSong?.uri) {
             console.log('song-started', { type, state });
             currSongStarted()(dispatch);
           }
         }}
+        handlePlayerErrors={(e) => console.log('here') || setToken({})}
       />
     </div>
   );
