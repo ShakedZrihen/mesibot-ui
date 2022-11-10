@@ -12,40 +12,55 @@ const Player = ({ currSong, playlist }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [token, setToken] = useState({});
-  const [orderedPlaylilst, setOrderedPlaylist] = useState(playlist || []);
-  const [playing, setPlaying] = useState(currSong?.uri);
+  const [playing, setPlaying] = useState(currSong?.map(({ uri }) => uri));
+  const [orderedPlaylilst, setOrderedPlaylist] = useState(
+    [...(currSong || []), ...playlist].map((song) => song.uri)
+  );
 
   useEffect(() => {
-    console.log({
-      currSong,
-      playing,
-      playlist,
-      condition:
-        currSong?.uri !== playing ||
-        (playlist?.length && !orderedPlaylilst.length)
-    });
     if (
-      currSong?.uri !== playing ||
+      (currSong && currSong?.[0]?.uri !== playing?.[0]?.uri) ||
       (playlist?.length && !orderedPlaylilst.length)
     ) {
-      setPlaying(currSong?.uri);
-      setOrderedPlaylist(playlist);
+      setPlaying(currSong?.map(({ uri }) => uri));
+      setOrderedPlaylist(
+        [...(currSong || []), ...playlist].map((song) => song.uri)
+      );
     }
   }, [currSong, playlist]);
 
   useEffect(() => {
     const getToken = async (code) => {
-      const { data: token } = await axios.get(
+      const { data: token, status } = await axios.get(
         `${SERVICE_URL}/spotify/redirect?code=${code}`
       );
-      setToken(token);
-      localStorage.setItem('token', JSON.stringify(token));
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.CODE);
+      if (status === 200) {
+        setToken(token);
+        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.CODE);
+      }
+    };
+    const refreshToken = async (savedToken) => {
+      const { data: token, status } = await axios.post(
+        `${SERVICE_URL}/spotify/refresh`,
+        { token: savedToken }
+      );
+      if (status === 200) {
+        setToken({ ...savedToken, ...token });
+        localStorage.setItem(
+          'token',
+          JSON.stringify({ ...savedToken, ...token })
+        );
+        localStorage.removeItem(LOCAL_STORAGE_KEYS.CODE);
+      }
     };
     const tokenFromLocalStorage = localStorage.getItem('token');
-    if (tokenFromLocalStorage) {
-      setToken(JSON.parse(tokenFromLocalStorage));
-      return;
+    if (tokenFromLocalStorage && !token.access_token) {
+      refreshToken(JSON.parse(tokenFromLocalStorage));
+      const intervalId = setInterval(() => {
+        refreshToken(JSON.parse(tokenFromLocalStorage));
+      }, [30000]);
+      return () => clearInterval(intervalId);
     }
     if (!token.access_token) {
       const pathname = _.get(location, 'pathname');
@@ -56,11 +71,13 @@ const Player = ({ currSong, playlist }) => {
         return;
       }
     }
-  }, [token.access_token]);
+  }, []);
 
-  // console.log({ playlist });
-  const tracks = orderedPlaylilst.map((song) => song.uri);
-  console.log({ tracks });
+  // console.log({ currSong });
+  // const tracks = [...(currSong || []), ...orderedPlaylilst].map(
+  //   (song) => song.uri
+  // );
+  // console.log({ tracks });
   return Object.keys(token).length === 0 ? (
     <div>
       <div className="token-not-available">
@@ -93,7 +110,7 @@ const Player = ({ currSong, playlist }) => {
         syncExternalDevice={true}
         magnifySliderOnHover={true}
         token={token.access_token}
-        uris={_.uniq([playing, ...tracks]).filter(Boolean)}
+        uris={_.uniq(orderedPlaylilst).filter(Boolean)}
         callback={(state) => {
           console.log('state', state);
           if (state.error) {
@@ -106,7 +123,6 @@ const Player = ({ currSong, playlist }) => {
             currSongStarted()(dispatch);
           }
         }}
-        handlePlayerErrors={(e) => console.log('here') || setToken({})}
       />
     </div>
   );
