@@ -14,7 +14,6 @@ export const omitFromQs = (
     ignoreQueryPrefix: true
   })
 ) => {
-  console.log(search);
   const paramValue = _.get(search, qsParamName);
   const newSearchString = `${QueryString.stringify(
     _.omit(search, [qsParamName])

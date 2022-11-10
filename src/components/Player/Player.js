@@ -16,7 +16,7 @@ const Player = ({ currSong, playlist }) => {
   const [orderedPlaylilst, setOrderedPlaylist] = useState(
     [...(currSong || []), ...playlist].map((song) => song.uri)
   );
-
+  console.log('player state', { token, playing, orderedPlaylilst });
   useEffect(() => {
     if (
       (currSong && currSong?.[0]?.uri !== playing?.[0]?.uri) ||
@@ -73,11 +73,6 @@ const Player = ({ currSong, playlist }) => {
     }
   }, []);
 
-  // console.log({ currSong });
-  // const tracks = [...(currSong || []), ...orderedPlaylilst].map(
-  //   (song) => song.uri
-  // );
-  // console.log({ tracks });
   return Object.keys(token).length === 0 ? (
     <div>
       <div className="token-not-available">
@@ -107,7 +102,6 @@ const Player = ({ currSong, playlist }) => {
           trackArtistColor: 'white',
           trackNameColor: 'white'
         }}
-        syncExternalDevice={true}
         magnifySliderOnHover={true}
         token={token.access_token}
         uris={_.uniq(orderedPlaylilst).filter(Boolean)}

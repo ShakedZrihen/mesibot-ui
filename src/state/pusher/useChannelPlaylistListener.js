@@ -13,7 +13,6 @@ import playlistEvents from './playlist.events';
 const useChannelPlaylistListener = ({ pusher, playlistId }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log({ playlistId });
     if (playlistId) {
       const playlistChannel = pusher.subscribe(playlistId);
 
@@ -37,7 +36,6 @@ const useChannelPlaylistListener = ({ pusher, playlistId }) => {
       });
 
       playlistChannel.bind(playlistEvents.NEW_SONG, (song) => {
-        console.log('New song is here', song);
         newSong(song)(dispatch);
       });
     }

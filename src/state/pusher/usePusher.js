@@ -12,7 +12,6 @@ const PUSHER_ENV = {
 
 const usePusher = () => {
   const playlistId = getPlaylistIdFromUrl();
-  console.log({ usePusher: playlistId });
   const pusher = new Pusher(PUSHER_ENV.API_KEY, {
     cluster: PUSHER_ENV.CLUSTER
   });

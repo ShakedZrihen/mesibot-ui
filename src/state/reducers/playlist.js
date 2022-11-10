@@ -34,7 +34,6 @@ const performSongStateChange = (
 };
 
 const playlistReducer = (state = { songs: [], currSong: null }, action) => {
-  console.log({ action, state });
   switch (action.type) {
     case FETCH_PLAYLIST:
       return {

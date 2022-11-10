@@ -11,7 +11,6 @@ const Playlist = ({ className }) => {
   const dispatch = useDispatch();
   const [isChatOpen, setIsChatOpen] = useState(false);
   const { songs: playlist, currSong } = useSelector(playlistSelector);
-  console.log({ playlist, currSong });
 
   useEffect(() => {
     fetchPlaylist()(dispatch);
