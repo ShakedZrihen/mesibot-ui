@@ -36,9 +36,10 @@ const performSongStateChange = (
 const playlistReducer = (state = { songs: [], currSong: null }, action) => {
   switch (action.type) {
     case FETCH_PLAYLIST:
+      const fetchedPlaylist = orderPlaylist(action.payload);
       return {
-        currSong: null,
-        songs: orderPlaylist(action.payload)
+        currSong: fetchedPlaylist[0],
+        songs: fetchedPlaylist.slice(1)
       };
     case NEW_SONG:
       const firstSong = _.get(state.songs, '[0]');
@@ -48,13 +49,10 @@ const playlistReducer = (state = { songs: [], currSong: null }, action) => {
         songs: orderPlaylist([...state.songs, action.payload])
       };
     case CURR_SONG_STARTED:
-      const playlistWithoutFirst = {
-        currSong: [state.songs?.[0], state.songs?.[1], state.songs?.[2]].filter(
-          Boolean
-        ),
-        songs: state.songs?.[1] ? orderPlaylist(state.songs.slice(1)) : []
+      return {
+        currSong: state.songs[0],
+        songs: state.songs.slice(1)
       };
-      return playlistWithoutFirst;
     case LIKE_SONG:
       return performSongStateChange(state, action.payload.uri, 1);
     case DISLIKE_SONG:

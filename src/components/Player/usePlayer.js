@@ -24,18 +24,24 @@ const usePlayer = ({ currSong, playlist }) => {
   const [updatePlayer, setUpdatePlayer] = useState(false);
 
   useEffect(() => {
+    console.log('Updating tracklist', {
+      currSong,
+      playlist,
+      firstCond: currSong && currSong?.uri !== playerState.current.playing?.[0],
+      secCond: playlist?.length && !playerState.current.orderedPlaylilst.length
+    });
     if (
-      (currSong && currSong?.[0]?.uri !== playerState.current.playing?.[0]) ||
+      (currSong && currSong?.uri !== playerState.current.playing?.[0]) ||
       (playlist?.length && !playerState.current.orderedPlaylilst.length)
     ) {
       setUpdatePlayer(false);
-      const newPlaying = currSong?.map(({ uri }) => uri);
+      const newPlaying = currSong?.uri;
       const newOrdered = _.uniq(
-        [...(currSong || []), ...playlist].map((song) => song.uri)
+        [newPlaying, ...playlist].map((song) => song.uri)
       ).filter(Boolean);
       playerState.current = {
         ...playerState.current,
-        playing: [...(newPlaying || []), newOrdered[0], newOrdered[1]],
+        playing: newPlaying,
         orderedPlaylilst: newOrdered
       };
       setUpdatePlayer(true);
